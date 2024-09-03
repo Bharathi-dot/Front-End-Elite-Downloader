@@ -1,0 +1,355 @@
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&display=swap');
+
+:root {
+    --background-color: #EEF0F4;
+    --box-shadow: 9.91px 9.91px 15px #D9DADE, -9.91px -9.91px 15px #FFFFFF;
+    --box-shadow-inset: inset 5px 2px 5px #bebebe, inset -5px -2px 5px #ffffff, 3px 3px 6px rgba(0, 0, 0, 0.2);
+    --arrow-icon-before-color: black;
+    --arrow-icon-after-color: white;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+   
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1%;
+    justify-items: center;
+    align-items: center;
+}
+
+/* Add these CSS classes to represent the different grid-template-rows */
+.container.fetch-layout {
+    grid-template-rows: 80px 100px 55px 150px 350px;
+}
+
+.container.submit-layout {
+    grid-template-rows: 80px 100px 150px 350px 55px;
+}
+/* ===========//=========== */
+
+.location-container {
+    height: auto;
+    text-align: center;
+    position: relative;
+    background: var(--background-color);
+    width: 90%;
+    padding: 20px 30px;
+    border-radius: 5px;
+    transition: all ease 0.5s;
+}
+
+.location-container.opened {
+    height: min-content;
+    transition: all ease 0.5s;
+}
+
+.container--header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 5.519vh;
+    gap: 3%;
+}
+
+.drop-arrow {
+    display: block;
+    width: 7.519vh;
+    height: 6.519vh;
+    border-radius: 50%;
+    transition: all ease 0.2s;
+    cursor: pointer;
+    background: var(--background-color);
+    box-shadow: var(--box-shadow);
+}
+
+.arrow-icon {
+    color: var(--arrow-icon-before-color);
+}
+
+.arrow-icon i {
+    font-size: 3.651vh;
+    line-height: 6.519vh;
+    font-weight: 800;
+}
+
+.drop-arrow.button--pushed {
+    box-shadow: var(--box-shadow-inset);
+    transition: all ease 0.2s;
+}
+
+.location {
+    height: 65px;
+    margin: 20px 0;
+    border-radius: 15px;
+}
+
+.location:nth-of-type(1) {
+    margin-top: 5px;
+}
+
+.location:last-of-type {
+    margin-bottom: 10px;
+}
+
+.location p {
+    line-height: 65px;
+    text-align: left;
+    padding-left: 30px;
+    font-size: 18px;
+    transition: all ease 0.5s;
+    letter-spacing: 0.8px;
+}
+
+.location-container {
+    box-shadow: var(--box-shadow);
+}
+
+.location-container .location {
+    background: var(--background-color);
+    box-shadow: var(--box-shadow);
+}
+
+.location-container .location p {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.location-container .location.location--selected {
+    box-shadow: var(--box-shadow-inset);
+}
+
+.location-container .location.location--selected p {
+    color: rgb(89, 204, 252);
+    text-shadow: 0px 0px 2px rgba(89, 204, 252, 0.8);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%; /* Position the dropdown content below the container */
+    left: 0;
+    width: 100%;
+    background: var(--background-color);
+    z-index: 1;
+    transition: all ease 0.5s;
+}
+
+.location-container.opened .dropdown-content {
+    display: block;
+}
+
+
+
+/* Forms Label */
+.form-floating {
+    position: relative;
+    box-shadow: var(--box-shadow);
+    background-color: var(--background-color);
+    border-radius: 30px;
+    font-weight: 800;
+    width: 90%;
+}
+
+.form-floating input {
+    width: 100%;
+    padding: 1rem 0.75rem;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    box-sizing: border-box;
+    background-color: var(--background-color);
+    border: none;
+    outline: none;
+}
+
+.form-floating input:focus {
+    border: none;
+    box-shadow: var(--box-shadow-inset);
+    outline: none;
+}
+
+.form-floating label {
+    position: absolute;
+    top: 50%;
+    left: 0.75rem;
+    transform: translateY(-50%);
+    transition: all 0.2s;
+    pointer-events: none;
+    font-size: 1rem;
+    height: 2.608vh;
+    padding: 0 0.25rem;
+    padding-bottom: 23px;
+    white-space: nowrap;
+}
+
+.form-floating input:focus + label,
+.form-floating input:not(:placeholder-shown) + label {
+    top: 1px;
+    left: 1.9rem;
+    font-size: 0.75rem;
+    border-radius: 100px;
+    background-color: var(--background-color);
+    padding: 0 20px;
+    box-shadow: var(--box-shadow-inset);
+    font-weight: 500;
+    width: 30vw;
+    text-align: center;
+}
+
+
+/* Options like buttons */
+.options {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(10px, 1fr));
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 2%;
+    height: 100%;
+    width: 90%;
+
+    .audiovideo {
+        grid-column: span 2;
+    }
+
+    .option, .btn {
+        display: grid;
+        align-items: center;
+        background: var(--background-color);
+        box-shadow: var(--box-shadow);
+        padding: 10px;
+        
+    }
+}
+
+#fetchbtn, #download {
+    background: var(--background-color);
+    box-shadow: var(--box-shadow);
+    border-radius: 10px;
+    display: grid;
+    padding: 10px;
+    height: 100%;
+    width: 90%;
+    align-items: center;
+}
+
+.non-clickable {
+    pointer-events: none;
+}
+
+.avatar {
+    width: 100%; /* Adjust as needed */
+    height: 90%; /* Adjust as needed */
+    background-image: url("Elite.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.heading {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding-bottom: 0;
+    font-weight: 700;
+    margin-top:20px;
+}
+
+
+/* only fonts family */
+.option, #fetchbtn, #download {
+    font-family: "Assistant", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
+}
+
+
+/* HTML: <div class="loader"></div> */
+.loader-container {
+    display: none; /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+    position: fixed; /* Position it over the entire screen */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.5);  /*Semi-transparent background*/ 
+  z-index:22;
+}
+.spinner {
+    --size: 30px;
+    --first-block-clr: #005bba;
+    --second-block-clr: #fed500;
+    --clr: #111;
+    width: 100px;
+    height: 100px;
+    position: relative;
+}
+
+.spinner::after, .spinner::before {
+    box-sizing: border-box;
+    position: absolute;
+    content: "";
+    width: var(--size);
+    height: var(--size);
+    top: 50%;
+    animation: up 2.4s cubic-bezier(0, 0, 0.24, 1.21) infinite;
+    left: 50%;
+    background: var(--first-block-clr);
+}
+
+.spinner::after {
+    background: var(--second-block-clr);
+    top: calc(50% - var(--size));
+    left: calc(50% - var(--size));
+    animation: down 2.4s cubic-bezier(0, 0, 0.24, 1.21) infinite;
+}
+
+@keyframes down {
+    0%, 100% {
+        transform: none;
+    }
+
+    25% {
+        transform: translateX(100%);
+    }
+
+    50% {
+        transform: translateX(100%) translateY(100%);
+    }
+
+    75% {
+        transform: translateY(100%);
+    }
+}
+
+@keyframes up {
+    0%, 100% {
+        transform: none;
+    }
+
+    25% {
+        transform: translateX(-100%);
+    }
+
+    50% {
+        transform: translateX(-100%) translateY(-100%);
+    }
+
+    75% {
+        transform: translateY(-100%);
+    }
+}
+
+.toast-margin {
+    margin-bottom:10px;
+    margin-right:10px;
+ width:95%;
+}
+

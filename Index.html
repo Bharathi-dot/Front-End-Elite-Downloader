@@ -1,0 +1,561 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Elite Downloader</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+    <link href="main.css" rel="stylesheet" />
+</head>
+
+
+<body style=" background-color: #EEF0F4;">
+
+
+    <div class="container">
+
+        <h1 class="heading">Elite downloader</h1>
+
+        <div class="location-container dark ">
+            <div class="container--header">
+                <div class="form-floating">
+                    <input type="text" id="videoUrl" name="song" class="form-control-lg  " placeholder=""
+                        autocomplete="off">
+                    <label class="form-label" for="text">Enter a URL</label>
+                </div>
+                <div class="drop-arrow">
+                    <span class="arrow-icon"><i class="material-icons">expand_more</i></span>
+                </div>
+            </div>
+            <div class="dropdown-content">
+                <div class="location" location="INSTAGRAM">
+                    <p><i class="fa-brands fa-youtube"></i> INSTAGRAM</p>
+                </div>
+                <div class="location" location="YOUTUBE">
+                    <p> <i class="fa-brands fa-instagram"></i> YOUTUBE</p>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn" id="fetchbtn">Fetch Resolution</button>
+
+        <div class="avatar" id="thumbnail">
+        </div>
+
+        <div class="options">
+            <input type="button" class="btn option resolution" value="240">
+            <input type="button" class="btn option resolution" value="360">
+            <input type="button" class="btn option resolution" value="480">
+            <input type="button" class="btn option resolution" value="720">
+            <input type="button" class="btn option resolution" value="1080">
+            <input type="button" class="btn option resolution" value="1440">
+            <input type="button" class="btn option resolution" value="2160">
+            <input type="button" class="btn option resolution" value="4320">
+            <input type="button" class="btn option audio-only" value="only-audio">
+            <input type="button" class="btn option video-only" value="only-video">
+            <input type="button" class="btn option audiovideo" value="audiovideo">
+        </div>
+
+        <button class="btn" id="download" style="display: none;">download</button>
+
+        <div class="loader-container">
+            <div class="spinner"></div>
+        </div>
+
+        <div class="card-group" style="width: 90%;">
+            <div class="card">
+                <img class="card-img-top" src="Elite.png" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Elite Downloader</h5>
+                    <p class="card-text">Open the Instagram or YouTube app/website, and copy the URL of the video you
+                        want to download</p>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="Elite.png" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fa-regular fa-copy fa-bounce me-2"></i>Copy the Link</h5>
+                    <p class="card-text">Open the Instagram or YouTube app/website, and copy the URL of the video you
+                        want to download</p>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="Elite.png" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fa-regular fa-paste me-2"></i>Paste the Link</h5>
+                    <p class="card-text">Return to the Elite Downloader website, paste the copied URL into the input
+                        field.
+                    </p>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="Elite.png" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fa-solid fa-magnifying-glass fa-spin fa-spin-reverse me-2"></i>Choose the Platform</h5>
+                    <p class="card-text">Select whether the link is from Instagram or YouTube in the platform selection
+                        area</p>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="Elite.png" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Fetch Resolutions</h5>
+                    <p class="card-text">Click the "Fetch Resolution" button to retrieve available download options
+                        based on the platform.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="Elite.png" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fa-solid fa-film me-2"></i>Choose Format</h5>
+                    <p class="card-text">
+                    <ul>
+                        <li>Audio Only</li>
+                        <li>Video Only (with selected resolution)</li>
+                        <li>Audio and Video (with selected resolution)</li>
+                    </ul>
+                    </p>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="Elite.png" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fa-solid fa-download me-2"></i>Download</h5>
+                    <p class="card-text">After selecting your format, click the "Download" button to start your
+                        download.</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://kit.fontawesome.com/0577533679.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+    <script>
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            var apiEndPoint = "https://localhost:7156";
+            let selectedResolution = '';
+            let selectedFormat = '';
+            var url = '';
+            let ResolutionapiResponse = '';
+
+            // Add non-clickable class to option buttons on page load
+            const optionButtons = document.querySelectorAll(".option");
+
+            optionButtons.forEach(button => {
+                button.classList.add("non-clickable");
+
+            });
+            //=======//========//
+
+            // ------for drop down selecting purpose----------//
+            let locationButtons = document.getElementsByClassName('location');
+
+            Array.from(locationButtons).forEach(function (locationButton) {
+                locationButton.addEventListener('click', pressedLocation);
+            });
+            function pressedLocation() {
+                let selected = document.getElementsByClassName('location--selected');
+                if (selected.length > 0) {
+                    selected[0].classList.remove('location--selected');
+                }
+                this.classList.add('location--selected');
+                ;
+            }
+            // ================//===================//
+
+            //-----for drop down arrow---------//
+            document.getElementsByClassName('drop-arrow')[0].addEventListener('click', dropButton);
+
+            function dropButton() {
+                this.classList.toggle('button--pushed');
+                document.getElementsByClassName('location-container')[0].classList.toggle('opened');
+            }
+
+            // Add event listeners for Instagram and YouTube dropdown items
+            document.querySelector('.location[location="INSTAGRAM"]').addEventListener('click', function () {
+                resetIconClasses();
+                this.querySelector('i').classList.add('fa-shake');
+            });
+
+            document.querySelector('.location[location="YOUTUBE"]').addEventListener('click', function () {
+                resetIconClasses();
+                this.querySelector('i').classList.add('fa-bounce');
+            });
+
+            // Function to reset all icon classes (optional)
+            function resetIconClasses() {
+                document.querySelectorAll('.location i').forEach(icon => {
+                    icon.classList.remove('fa-shake', 'fa-bounce');
+                });
+            }
+
+            //==========//============//
+
+
+            // -----For grid layout changing-----//
+            document.querySelector('.container').classList.add('fetch-layout');
+
+            const fetchButton = document.getElementById('fetchbtn');
+            const downloadButton = document.getElementById('download');
+
+
+            // Function to simulate an API call and enable resolution buttons based on response
+
+            let apiResponse = {};
+
+            document.getElementById('fetchbtn').addEventListener('click', () => {
+
+                var notyf = new Notyf();
+
+
+                let selectedPlatformElement = document.querySelector('.location--selected p');
+                let selectedPlatform = selectedPlatformElement ? selectedPlatformElement.innerText.trim().toLowerCase() : null;
+                let url = document.getElementById('videoUrl').value.trim().toLowerCase();
+
+
+                // Check if the URL is entered and the dropdown option is selected
+                if (url === '' || !(url.includes('https://youtu.be') || url.includes('https://www.instagram.com'))) {
+                    // If URL is empty or URL does not contain the required domains
+                    notyf.error({
+                        message: 'Enter a Valid URL',
+                        className: 'toast-margin'
+                    });
+
+                } else if (selectedPlatform === null) {
+                    // If no platform is selected
+                    notyf.error({
+                        message: 'Select a format from the dropdown menu',
+                        className: 'toast-margin'
+                    });
+                } else if ((url.includes('instagram') && selectedPlatform === 'youtube') ||
+                    (url.includes('youtu') && selectedPlatform === 'instagram')) {
+                    // If URL and platform do not match
+                    notyf.error({
+                        message: 'Wrong format selected',
+                        className: 'toast-margin'
+                    });
+                } else {
+                    // Both conditions are met, proceed with enabling buttons and layout change
+                    optionButtons.forEach(button => {
+                        button.classList.remove("non-clickable");
+                    });
+
+                    fetchResolution();
+
+                    // Disable the fetch button and enable the download button
+                    fetchButton.style.display = "none";
+                    downloadButton.style.display = "block";
+
+                    // Change the grid-template-rows by toggling the class
+                    const container = document.querySelector('.container');
+                    container.classList.remove('fetch-layout');
+                    container.classList.add('submit-layout');
+                }
+
+            });
+
+            async function fetchResolution() {
+                document.querySelector('.loader-container').style.display = 'flex';
+
+                const url = document.getElementById('videoUrl').value;
+                let selectedPlatform = document.querySelector('.location--selected p').innerText.trim().toLowerCase(); // will be either 'instagram' or 'youtube'
+
+                try {
+                    const response = await fetch(`${apiEndPoint}/api/VideoProcessing/get-resolutions`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ url, isInstagram: selectedPlatform == 'instagram' })
+                    }).finally(() => {
+                        // Hide the loader
+                        document.querySelector('.loader-container').style.display = 'none';
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+
+                    const data = await response.json();
+                    console.log(data.resolutions)
+
+                    // Store the API response
+                    ResolutionapiResponse = data;
+                    enableResolutionButtons(ResolutionapiResponse.resolutions);  // Use the stored response to enable buttons
+
+                    // ----- Displaying thumbnail ---- //
+
+                    if (ResolutionapiResponse.thumbnailUrl) {
+                        const thumbnailElement = document.querySelector('.avatar');
+                        if (ResolutionapiResponse.thumbnailUrl.startsWith('data:image')) {
+                            // Instagram thumbnail (Base64)
+                            thumbnailElement.style.backgroundImage = `url(${ResolutionapiResponse.thumbnailUrl})`;
+                        } else {
+                            // YouTube thumbnail (URL)
+                            thumbnailElement.style.backgroundImage = `url(${ResolutionapiResponse.thumbnailUrl})`;
+                        }
+                    }
+
+                    // =========== // ============== //
+
+                } catch (error) {
+                    console.error('Error fetching resolutions:', error);
+                }
+            }
+
+
+            function enableResolutionButtons(resolutions) {
+                // Iterate over each resolution and enable/disable buttons accordingly
+                if (!resolutions["240p"]) document.querySelector('.resolution[value="240"]').disabled = true;
+                if (!resolutions["360p"]) document.querySelector('.resolution[value="360"]').disabled = true;
+                if (!resolutions["480p"]) document.querySelector('.resolution[value="480"]').disabled = true;
+                if (!resolutions["720p"]) document.querySelector('.resolution[value="720"]').disabled = true;
+                if (!resolutions["1080p"]) document.querySelector('.resolution[value="1080"]').disabled = true;
+                if (!resolutions["1440p"]) document.querySelector('.resolution[value="1440"]').disabled = true;
+                if (!resolutions["2160p"]) document.querySelector('.resolution[value="2160"]').disabled = true;
+                if (!resolutions["4320p"]) document.querySelector('.resolution[value="4320"]').disabled = true;
+            }
+
+
+
+
+
+            document.querySelectorAll('.option').forEach(button => {
+                button.addEventListener('click', handleButtonClick);
+            });
+
+            function handleButtonClick(event) {
+                const clickedButton = event.target;
+
+
+                if (clickedButton.classList.contains('resolution')) {
+                    selectedResolution = clickedButton.value;
+                    setAllButtonsActive();
+                    setButtonInsetShadow(clickedButton, true);
+                    if (selectedFormat) {
+                        setButtonInsetShadow(document.querySelector(`.${selectedFormat}`), true);
+                    }
+                    if (selectedFormat === 'video-only') {
+                        setButtonsInactive(['audio-only']); // Ensure these buttons remain disabled
+                    }
+                    enableResolutionButtons(ResolutionapiResponse.resolutions);
+                } else if (clickedButton.classList.contains('audio-only')) {
+                    selectedFormat = 'audio-only';
+                    setAllButtonsInactive();
+                    setButtonsActive(['audio-only', 'video-only', 'audiovideo']);
+                    setButtonInsetShadow(clickedButton, true);
+                    enableResolutionButtons(ResolutionapiResponse.resolutions);
+                } else if (clickedButton.classList.contains('video-only')) {
+                    selectedFormat = 'video-only';
+                    setAllButtonsActive();
+                    setButtonInsetShadow(clickedButton, true);
+                    if (selectedResolution) {
+                        setButtonInsetShadow(document.querySelector(`.resolution[value="${selectedResolution}"]`), true);
+                    }
+                    // Ensure audiovideo button is enabled
+                    document.querySelector('.audiovideo').disabled = false;
+                    enableResolutionButtons(ResolutionapiResponse.resolutions);
+                } else if (clickedButton.classList.contains('audiovideo')) {
+                    selectedFormat = 'audiovideo';
+                    setAllButtonsActive();
+                    setButtonInsetShadow(clickedButton, true);
+                    if (selectedResolution) {
+                        setButtonInsetShadow(document.querySelector(`.resolution[value="${selectedResolution}"]`), true);
+                    }
+                    // Ensure video-only button is enabled
+                    document.querySelector('.video-only').disabled = false;
+                    enableResolutionButtons(ResolutionapiResponse.resolutions);
+                }
+            }
+
+            function setAllButtonsActive() {
+                document.querySelectorAll('.option').forEach(button => {
+                    button.disabled = false;
+                    setButtonInsetShadow(button, false);
+                });
+            }
+
+            function setAllButtonsInactive() {
+                document.querySelectorAll('.option').forEach(button => {
+                    button.disabled = true;
+                    setButtonInsetShadow(button, false);
+                });
+            }
+
+            function setButtonsActive(buttonClasses) {
+                buttonClasses.forEach(buttonClass => {
+                    const button = document.querySelector(`.${buttonClass}`);
+                    if (button) {
+                        button.disabled = false;
+                    }
+                });
+            }
+
+            function setButtonsInactive(buttonClasses) {
+                buttonClasses.forEach(buttonClass => {
+                    const button = document.querySelector(`.${buttonClass}`);
+                    if (button) {
+                        button.disabled = true;
+                    }
+                });
+            }
+
+            function setButtonInsetShadow(button, isInset) {
+                if (isInset) {
+                    button.style.boxShadow = 'var(--box-shadow-inset)';
+                } else {
+                    button.style.boxShadow = 'var(--box-shadow)';
+                }
+            }
+
+
+
+            // for other 3 api
+            document.getElementById('download').addEventListener('click', handleDownload);
+
+            async function handleDownload() {
+                // Validation: Ensure resolution is selected for "video only" and "audiovideo" formats
+                if ((selectedFormat === 'video-only' || selectedFormat === 'audiovideo') && !selectedResolution) {
+                    Swal.fire({
+                        title: "Resolution Required",
+                        text: "Please select a resolution before proceeding.",
+                        icon: "warning",
+                        confirmButtonColor: "#3085d6",
+                        customClass: {
+                            popup: 'sweetAlertContainer'
+                        },
+                        confirmButtonText: "OK",
+                    });
+                    return; // Exit the function if resolution is not selected
+                }
+
+                document.querySelector('.loader-container').style.display = 'flex';
+                let selectedPlatform = document.querySelector('.location--selected p').innerText.trim().toLowerCase(); // will be either 'instagram' or 'youtube'
+                let url = document.getElementById('videoUrl').value;
+                let apiEndpoint;
+                let payload;
+
+                if (selectedFormat === 'audio-only') {
+                    apiEndpoint = `${apiEndPoint}/api/VideoProcessing/download-best-audio`;
+                    payload = { Url: url, isInstagram: selectedPlatform == 'instagram' };
+                } else if (selectedFormat === 'video-only') {
+                    apiEndpoint = `${apiEndPoint}/api/VideoProcessing/download-best-video`;
+                    payload = { Url: url, Quality: selectedResolution, isInstagram: selectedPlatform == 'instagram' };
+
+                } else if (selectedFormat === 'audiovideo') {
+                    apiEndpoint = `${apiEndPoint}/api/VideoProcessing/download-Video-Audio`;
+                    payload = { Url: url, Quality: selectedResolution, isInstagram: selectedPlatform == 'instagram' };
+                }
+
+                try {
+                    const response = await fetch(apiEndpoint, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+
+
+                    if (response.ok) {
+                        // Extract filename from Content-Disposition header
+                        const contentDisposition = response.headers.get('Content-Disposition');
+                        const fileNameMatch = contentDisposition && contentDisposition.match(/filename="?(.+)"?/);
+                        const filename = fileNameMatch ? fileNameMatch[1] : 'downloaded_file.mp4';
+
+                        // Create a temporary anchor element to trigger the download
+                        const downloadUrl = window.URL.createObjectURL(await response.blob());
+                        const a = document.createElement('a');
+                        a.style.display = 'none';
+                        a.href = downloadUrl;
+                        a.download = filename;
+                        document.body.appendChild(a);
+                        a.click();
+                        window.URL.revokeObjectURL(downloadUrl);
+                        document.querySelector('.loader-container').style.display = 'none';
+                        Swal.fire({
+                            title: "Download Successful!",
+                            text: "Your file has been downloaded successfully.",
+                            icon: "success",
+                            confirmButtonColor: "#3085d6",
+                            confirmButtonText: "OK"
+                        });
+                    } else {
+                        const result = await response.text();;
+                        Swal.fire({
+                            title: "Download Failed",
+                            text: `Error: ${result.message}`,
+                            icon: "error",
+                            confirmButtonColor: "#3085d6",
+                            confirmButtonText: "OK"
+                        });
+                        document.querySelector('.loader-container').style.display = 'none';
+                    }
+
+                    // Call the reset function here
+                    resetButtons();
+                } catch (error) {
+                    console.error('Error during download:', error);
+                    document.querySelector('.loader-container').style.display = 'none';
+
+                    Swal.fire({
+                        title: "Download Failed",
+                        text: "An error occurred while processing your download request.",
+                        icon: "error",
+                        confirmButtonColor: "#3085d6",
+                        confirmButtonText: "OK"
+                    });
+                }
+            }
+
+
+            // reset all previous positions
+
+            function resetButtons() {
+
+                // Reset selected resolution and format
+                selectedResolution = '';
+                selectedFormat = '';
+                document.getElementById('videoUrl').value = '';
+
+
+                // Set all buttons to their initial state
+                optionButtons.forEach(button => {
+                    button.disabled = false;
+                    setButtonInsetShadow(button, false);
+                    button.classList.add("non-clickable");
+                });
+
+                // Hide download button and show fetch button
+                fetchButton.style.display = "block";
+                downloadButton.style.display = "none";
+
+                // Reset the container layout
+                const container = document.querySelector('.container');
+                container.classList.remove('submit-layout');
+                container.classList.add('fetch-layout');
+
+
+                // Reset avatar background image
+                const thumbnailElement = document.getElementById('thumbnail');
+                thumbnailElement.style.backgroundImage = 'url("/images/replace-image.png")'; // or any default image
+            }
+
+        })
+
+    </script>
+</body>
+
+</html>
