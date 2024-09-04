@@ -9,6 +9,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
     <link href="main.css" rel="stylesheet" />
 </head>
@@ -49,7 +51,11 @@
 
         <div class="options">
             <input type="button" class="btn option resolution" value="240">
-            <input type="button" class="btn option resolution" value="360">
+            <div class="option-wrapper">
+                <input type="button" class="btn option resolution disabled w-100" value="360" disabled>
+                <img class="cross-icon" width="28px" height="28px" src="cross.png" alt="">
+              </div>
+              
             <input type="button" class="btn option resolution" value="480">
             <input type="button" class="btn option resolution" value="720">
             <input type="button" class="btn option resolution" value="1080">
@@ -77,7 +83,7 @@
                 </div>
             </div>
             <div class="card">
-                <img class="card-img-top" src="Elite.png" alt="Card image cap">
+                <img class="card-img-top" src="copy-1.png" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title"><i class="fa-regular fa-copy fa-bounce me-2"></i>Copy the Link</h5>
                     <p class="card-text">Open the Instagram or YouTube app/website, and copy the URL of the video you
@@ -85,7 +91,7 @@
                 </div>
             </div>
             <div class="card">
-                <img class="card-img-top" src="Elite.png" alt="Card image cap">
+                <img class="card-img-top" src="paste.png" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title"><i class="fa-regular fa-paste me-2"></i>Paste the Link</h5>
                     <p class="card-text">Return to the Elite Downloader website, paste the copied URL into the input
@@ -94,7 +100,7 @@
                 </div>
             </div>
             <div class="card">
-                <img class="card-img-top" src="Elite.png" alt="Card image cap">
+                <img class="card-img-top" src="choosing platform.png" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title"><i class="fa-solid fa-magnifying-glass fa-spin fa-spin-reverse me-2"></i>Choose the Platform</h5>
                     <p class="card-text">Select whether the link is from Instagram or YouTube in the platform selection
@@ -102,7 +108,7 @@
                 </div>
             </div>
             <div class="card">
-                <img class="card-img-top" src="Elite.png" alt="Card image cap">
+                <img class="card-img-top" src="fetch resolution .png" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">Fetch Resolutions</h5>
                     <p class="card-text">Click the "Fetch Resolution" button to retrieve available download options
@@ -110,7 +116,7 @@
                 </div>
             </div>
             <div class="card">
-                <img class="card-img-top" src="Elite.png" alt="Card image cap">
+                <img class="card-img-top" src="Choose the options.png" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title"><i class="fa-solid fa-film me-2"></i>Choose Format</h5>
                     <p class="card-text">
@@ -123,15 +129,15 @@
                 </div>
             </div>
             <div class="card">
-                <img class="card-img-top" src="Elite.png" alt="Card image cap">
+                <img class="card-img-top" src="ClickDownload.png" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title"><i class="fa-solid fa-download me-2"></i>Download</h5>
                     <p class="card-text">After selecting your format, click the "Download" button to start your
                         download.</p>
                 </div>
             </div>
-
         </div>
+        
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

@@ -353,3 +353,25 @@
  width:95%;
 }
 
+//----------------//------------------//
+
+
+
+//================//============//
+.option-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .cross-icon {
+    position: absolute;
+    top: 50%;
+    right: 30px; /* Adjust this value to position the icon closer to the button */
+    transform: translateY(-50%);
+    pointer-events: none; /* Ensure the icon doesn't interfere with button clicks */
+  }
+  
+
+  
