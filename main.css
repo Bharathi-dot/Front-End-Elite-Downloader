@@ -207,7 +207,7 @@
   height: 100%;
   width: 90%;
 }
-.options .audiovideo {
+.options .audiovideo, .options .av-wrapper {
   grid-column: span 2;
 }
 .options .option, .options .btn {
@@ -345,13 +345,13 @@
 .option-wrapper input {
   width: 100%;
 }
+.option-wrapper img, .option-wrapper input {
+  display: block;
+}
 
-.cross-icon {
+.cross-icon, .ok-icon {
   position: absolute;
-  top: 50%;
-  right: 30px; /* Adjust this value to position the icon closer to the button */
-  transform: translateY(-50%);
-  pointer-events: none; /* Ensure the icon doesn't interfere with button clicks */
+  right: 14px;
 }
 
 /*# sourceMappingURL=main.css.map */

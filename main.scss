@@ -212,7 +212,7 @@
     height: 100%;
     width: 90%;
 
-    .audiovideo {
+    .audiovideo , .av-wrapper {
         grid-column: span 2;
     }
 
@@ -361,21 +361,25 @@
 .option-wrapper {
     position: relative;
     display: flex;
-    justify-content: center;
+    justify-content:center;
     align-items: center;
 
     input{
         width: 100%;
     }
+    img,input{
+        display: block;
+    }
   }
   
-  .cross-icon {
+  .cross-icon , .ok-icon{
     position: absolute;
-    top: 50%;
-    right: 30px; /* Adjust this value to position the icon closer to the button */
-    transform: translateY(-50%);
-    pointer-events: none; /* Ensure the icon doesn't interfere with button clicks */
+    right: 14px;
+    // top: 50%;
+    // right: 30px; 
+    // transform: translateY(-50%);
+    // pointer-events: none; /* Ensure the icon doesn't interfere with button clicks */
   }
-  
 
+ 
   
