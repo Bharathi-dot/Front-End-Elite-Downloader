@@ -52,49 +52,49 @@
         <div class="options">
             <div class="option-wrapper">
                 <input type="button" class="btn option resolution" value="240">
-                <img class="cross-icon " hidden width="28px" height="28px" src="cross.png" alt="">
+                <img class="cross-icon" hidden hidden width="28px" height="28px" src="cross.png" alt="">
 
             </div>
             <div class="option-wrapper">
                 <input type="button" class="btn option resolution" value="360" >
-                <img class="cross-icon" width="28px" height="28px" src="cross.png" alt="">
+                <img class="cross-icon" hidden width="28px" height="28px" src="cross.png" alt="">
             </div>
             <div class="option-wrapper">
                 <input type="button" class="btn option resolution" value="480">
-                <img class="cross-icon" width="28px" height="28px" src="cross.png" alt="">
+                <img class="cross-icon" hidden width="28px" height="28px" src="cross.png" alt="">
             </div>
             <div class="option-wrapper">
                 <input type="button" class="btn option resolution" value="720">
-                <img class="cross-icon" width="28px" height="28px" src="cross.png" alt="">
+                <img class="cross-icon" hidden width="28px" height="28px" src="cross.png" alt="">
             </div>
             <div class="option-wrapper">
                 <input type="button" class="btn option resolution" value="1080">
-                <img class="cross-icon" width="28px" height="28px" src="cross.png" alt="">
+                <img class="cross-icon" hidden width="28px" height="28px" src="cross.png" alt="">
 
             </div>
             <div class="option-wrapper">
             <input type="button" class="btn option resolution" value="1440">
-                <img class="cross-icon" width="28px" height="28px" src="cross.png" alt="">
+                <img class="cross-icon" hidden width="28px" height="28px" src="cross.png" alt="">
 
             </div>
             <div class="option-wrapper">
             <input type="button" class="btn option resolution" value="2160">
-                <img class="cross-icon" width="28px" height="28px" src="cross.png" alt="">
+                <img class="cross-icon" hidden width="28px" height="28px" src="cross.png" alt="">
 
             </div>
             <div class="option-wrapper">
             <input type="button" class="btn option resolution" value="4320">
 
-                <img class="cross-icon" width="28px" height="28px" src="cross.png" alt="">
+                <img class="cross-icon" hidden width="28px" height="28px" src="cross.png" alt="">
 
             </div>
             <div class="option-wrapper">
             <input type="button" class="btn option audio-only " value="only-audio">
-                <img class="cross-icon" width="28px" height="28px" src="cross.png" alt="">
+                <img class="cross-icon" hidden width="28px" height="28px" src="cross.png" alt="">
             </div>
             <div class="option-wrapper">
             <input type="button" class="btn option video-only" value="only-video">
-                <img class="cross-icon" width="28px" height="28px" src="cross.png" alt="">
+                <img class="cross-icon" hidden width="28px" height="28px" src="cross.png" alt="">
 
             </div>
             
@@ -360,39 +360,51 @@
             }
 
 
+
+
+
+
+
+
             function enableResolutionButtons(resolutions) {
+  
 
-debugger;
-                // Iterate over each resolution and enable/disable buttons accordingly
-                if (!resolutions["240p"]) document.querySelector('.resolution[value="240"]').disabled = true;
-                if (!resolutions["360p"]) document.querySelector('.resolution[value="360"]').disabled = true;
-                if (!resolutions["480p"]) document.querySelector('.resolution[value="480"]').disabled = true;
-                if (!resolutions["720p"]) document.querySelector('.resolution[value="720"]').disabled = true;
-                if (!resolutions["1080p"]) document.querySelector('.resolution[value="1080"]').disabled = true;
-                if (!resolutions["1440p"]) document.querySelector('.resolution[value="1440"]').disabled = true;
-                if (!resolutions["2160p"]) document.querySelector('.resolution[value="2160"]').disabled = true;
-                if (!resolutions["4320p"]) document.querySelector('.resolution[value="4320"]').disabled = true;
+    // Iterate over each resolution and enable/disable buttons accordingly
+    if (!resolutions["240p"]) disableButtonAndShowIcon("240");
+    if (!resolutions["360p"]) disableButtonAndShowIcon("360");
+    if (!resolutions["480p"]) disableButtonAndShowIcon("480");
+    if (!resolutions["720p"]) disableButtonAndShowIcon("720");
+    if (!resolutions["1080p"]) disableButtonAndShowIcon("1080");
+    if (!resolutions["1440p"]) disableButtonAndShowIcon("1440");
+    if (!resolutions["2160p"]) disableButtonAndShowIcon("2160");
+    if (!resolutions["4320p"]) disableButtonAndShowIcon("4320");
+}
 
-    //             const resolutionValues = ["240", "360", "480", "720", "1080", "1440", "2160", "4320"];
-    
-    // resolutionValues.forEach(value => {
-    //     const button = document.querySelector(`.resolution[value="${value}"]`);
-    //     if (button) {
-    //         button.disabled = !resolutions[`${value}p`];
-    //     }
-    // });
+function disableButtonAndShowIcon(resolution) {
+    // Select the button for the specific resolution
+    let button = document.querySelector(`.resolution[value="${resolution}"]`);
 
-    // // Check if any button is disabled
-    // const anyDisabled = Array.from(document.querySelectorAll('.resolution')).some(button => button.disabled);
+    if (button) {
+        // Find the cross icon in the same option-wrapper
+        let icon = button.closest('.option-wrapper').querySelector('.cross-icon');
+        
+        // Disable the button and show the cross icon
+        button.disabled = true;
+        icon.hidden = false;  // Make the cross icon visible
+    } else {
+        console.error(`Button for resolution ${resolution} not found.`);
+    }
+}
 
-    // // Show or hide the cross icon based on whether any button is disabled
-    // const crossImage = document.querySelector('.cross-icon');
-    // if (crossImage) {
-    //     crossImage.hidden = !anyDisabled;
-    // }
 
-              
-            }
+
+
+
+
+
+
+
+
 
 
 
