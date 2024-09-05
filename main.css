@@ -134,7 +134,6 @@
   background: var(--background-color);
   z-index: 1;
   transition: all ease 0.5s;
-  margin-top: 10px;
 }
 
 .location-container.opened .dropdown-content {
@@ -237,7 +236,7 @@
 .avatar {
   width: 100%; /* Adjust as needed */
   height: 90%; /* Adjust as needed */
-  background-image: url("replace-image.png");
+  background-image: url("Elite.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -335,6 +334,24 @@
   margin-bottom: 10px;
   margin-right: 10px;
   width: 95%;
+}
+
+.option-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.option-wrapper input {
+  width: 100%;
+}
+
+.cross-icon {
+  position: absolute;
+  top: 50%;
+  right: 30px; /* Adjust this value to position the icon closer to the button */
+  transform: translateY(-50%);
+  pointer-events: none; /* Ensure the icon doesn't interfere with button clicks */
 }
 
 /*# sourceMappingURL=main.css.map */

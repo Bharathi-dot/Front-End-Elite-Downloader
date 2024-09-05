@@ -17,7 +17,7 @@
 .container {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1%;
+    gap: 0.3%;
     justify-items: center;
     align-items: center;
 }
@@ -363,6 +363,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    input{
+        width: 100%;
+    }
   }
   
   .cross-icon {
