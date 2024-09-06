@@ -465,6 +465,12 @@
                 document.querySelectorAll('.option').forEach(button => {
                     button.disabled = false;
                     setButtonInsetShadow(button, false);
+
+
+                    const crossIcon = button.parentElement.querySelector('.cross-icon');
+                    if (crossIcon) {
+                    crossIcon.hidden = true; // Show cross-icon
+                }
                 });
             }
 
@@ -472,19 +478,45 @@
                 document.querySelectorAll('.option').forEach(button => {
                     button.disabled = true;
                     setButtonInsetShadow(button, false);
+
+                    const crossIcon = button.parentElement.querySelector('.cross-icon');
+                const okIcon = button.parentElement.querySelector('.ok-icon');
+                
+                if (crossIcon) {
+                    crossIcon.hidden = false; // Show cross-icon
+                }
+
+                // Optionally hide the check-icon if needed
+                if (okIcon) {
+                    okIcon.hidden = true; // Hide ok-icon
+                }
                 });
             }
 
             function setButtonsActive(buttonClasses) {
+                debugger;
                 buttonClasses.forEach(buttonClass => {
                     const button = document.querySelector(`.${buttonClass}`);
                     if (button) {
                         button.disabled = false;
+
+                        const crossIcon = button.parentElement.querySelector('.cross-icon');
+                const okIcon = button.parentElement.querySelector('.ok-icon');
+                
+                if (crossIcon) {
+                    crossIcon.hidden = false; // Show cross-icon
+                }
+
+                // Optionally hide the check-icon if needed
+                if (okIcon) {
+                    okIcon.hidden = true; // Hide ok-icon
+                }
                     }
                 });
             }
 
             function setButtonsInactive(buttonClasses) {
+                debugger;
                 buttonClasses.forEach(buttonClass => {
                     const button = document.querySelector(`.${buttonClass}`);
                     if (button) {
