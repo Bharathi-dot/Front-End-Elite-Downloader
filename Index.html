@@ -36,10 +36,12 @@
             </div>
             <div class="dropdown-content">
                 <div class="location" location="INSTAGRAM">
-                    <p><i class="fa-brands fa-youtube"></i> INSTAGRAM</p>
+                    <p> <i class="fa-brands fa-instagram"></i>   <span class="gradient-text">INSTAGRAM</span></p>
+
                 </div>
                 <div class="location" location="YOUTUBE">
-                    <p> <i class="fa-brands fa-instagram"></i> YOUTUBE</p>
+                    <p><i class="fa-brands fa-youtube"></i> YOUTUBE</p>
+
                 </div>
             </div>
         </div>
@@ -104,14 +106,18 @@
             </div>
             <div class="option-wrapper">
                 <input type="button" class="btn option audio-only " value="only-audio">
-                <img class="cross-icon" hidden width="52px" height="52px" src="cross.png" alt="Not Available">
-                <img class="ok-icon" hidden width="28px" height="28px" src="check.png" alt="Selected">
+                <img class="cross-icon" hidden width="52px" height="52px" src="cross.png" style="right: -5px;"
+                    alt="Not Available">
+                <img class="ok-icon" hidden width="28px" height="28px" src="check.png" style="right: 8px;"
+                    alt="Selected">
 
             </div>
             <div class="option-wrapper">
                 <input type="button" class="btn option video-only" value="only-video">
-                <img class="cross-icon" hidden width="52px" height="52px" src="cross.png" alt="Not Available">
-                <img class="ok-icon" hidden width="28px" height="28px" src="check.png" alt="Selected">
+                <img class="cross-icon" hidden width="52px" height="52px" style="right: -5px;" src="cross.png"
+                    alt="Not Available">
+                <img class="ok-icon" hidden width="28px" height="28px" style="right: 8px;" src="check.png"
+                    alt="Selected">
             </div>
             <div class="option-wrapper av-wrapper">
                 <img class="ok-icon" hidden width="28px" height="28px" src="check.png" alt="Selected">
@@ -126,7 +132,7 @@
             <div class="spinner"></div>
         </div>
 
-        <div class="card-group" style="width: 90%;">
+        <div class="card-group mt-2" style="width: 90%;">
             <div class="card">
                 <img class="card-img-top" src="Elite.png" alt="Card image cap">
                 <div class="card-body">
@@ -221,47 +227,60 @@
             });
             //=======//========//
 
-            // ------for drop down selecting purpose----------//
-            let locationButtons = document.getElementsByClassName('location');
+         // --- For dropdown selecting purpose --- //
+let locationButtons = document.getElementsByClassName('location');
 
-            Array.from(locationButtons).forEach(function (locationButton) {
-                locationButton.addEventListener('click', pressedLocation);
-            });
-            function pressedLocation() {
-                let selected = document.getElementsByClassName('location--selected');
-                if (selected.length > 0) {
-                    selected[0].classList.remove('location--selected');
-                }
-                this.classList.add('location--selected');
-                ;
-            }
-            // ================//===================//
+Array.from(locationButtons).forEach(function (locationButton) {
+    locationButton.addEventListener('click', pressedLocation);
+});
 
-            //-----for drop down arrow---------//
-            document.getElementsByClassName('drop-arrow')[0].addEventListener('click', dropButton);
+function pressedLocation() {
+    let selected = document.getElementsByClassName('location--selected');
+    if (selected.length > 0) {
+        selected[0].classList.remove('location--selected');
+    }
+    this.classList.add('location--selected');
+    console.log('Selected location:', this.getAttribute('location')); // Debugging log
+}
 
-            function dropButton() {
-                this.classList.toggle('button--pushed');
-                document.getElementsByClassName('location-container')[0].classList.toggle('opened');
-            }
+// --- For dropdown arrow toggle --- //
+document.getElementsByClassName('drop-arrow')[0].addEventListener('click', dropButton);
 
-            // Add event listeners for Instagram and YouTube dropdown items
-            document.querySelector('.location[location="INSTAGRAM"]').addEventListener('click', function () {
-                resetIconClasses();
-                this.querySelector('i').classList.add('fa-shake');
-            });
+function dropButton() {
+    this.classList.toggle('button--pushed');
+    document.getElementsByClassName('location-container')[0].classList.toggle('opened');
+    console.log('Dropdown toggled'); // Debugging log
+}
 
-            document.querySelector('.location[location="YOUTUBE"]').addEventListener('click', function () {
-                resetIconClasses();
-                this.querySelector('i').classList.add('fa-bounce');
-            });
+// Function to reset icon classes and remove specific selected classes
+function resetIconClasses() {
+    document.querySelectorAll('.location').forEach(location => {
+        location.classList.remove('instagram-selected', 'youtube-selected');
+        const icon = location.querySelector('i');
+        if (icon) {
+            icon.classList.remove('fa-shake', 'fa-bounce');
+        }
+    });
+    console.log('Reset icon classes');
+}
 
-            // Function to reset all icon classes (optional)
-            function resetIconClasses() {
-                document.querySelectorAll('.location i').forEach(icon => {
-                    icon.classList.remove('fa-shake', 'fa-bounce');
-                });
-            }
+// Event listener for Instagram selection
+document.querySelector('.location[location="INSTAGRAM"]').addEventListener('click', function () {
+    resetIconClasses(); // Reset classes first
+    this.classList.add('instagram-selected'); // Add Instagram-specific class
+    this.querySelector('i').classList.add('fa-shake'); // Apply shake effect to icon
+    
+});
+
+// Event listener for YouTube selection
+document.querySelector('.location[location="YOUTUBE"]').addEventListener('click', function () {
+    resetIconClasses(); // Reset classes first
+    this.classList.add('youtube-selected'); // Add YouTube-specific class
+    this.querySelector('i').classList.add('fa-bounce'); // Apply bounce effect to icon
+    
+});
+
+
 
             //==========//============//
 
@@ -434,38 +453,10 @@
                     enableResolutionButtons(ResolutionapiResponse.resolutions);
                 } else if (clickedButton.classList.contains('audio-only')) {
                     selectedFormat = 'audio-only';
-        setAllButtonsInactive();
-        setButtonsActive(['audio-only', 'video-only', 'audiovideo']);
-        setButtonInsetShadow(clickedButton, true);
-
-        // Ensure other buttons have their icons set properly
-        document.querySelectorAll('.option').forEach(button => {
-            if (button !== clickedButton) {
-                const crossIcon = button.parentElement.querySelector('.cross-icon');
-                if (crossIcon) {
-                    crossIcon.hidden = false; // Show cross-icon for other buttons
-                }
-                const okIcon = button.parentElement.querySelector('.ok-icon');
-                if (okIcon) {
-                    okIcon.hidden = true; // Hide ok-icon for other buttons
-                }
-            }
-        });
-
-        // Ensure `audio-only` button itself has its icons set properly
-        const audioOnlyButton = document.querySelector('.audio-only');
-        if (audioOnlyButton) {
-            const crossIcon = audioOnlyButton.parentElement.querySelector('.cross-icon');
-            if (crossIcon) {
-                crossIcon.hidden = true; // Hide cross-icon for `audio-only` button
-            }
-            const okIcon = audioOnlyButton.parentElement.querySelector('.ok-icon');
-            if (okIcon) {
-                okIcon.hidden = false; // Show ok-icon for `audio-only` button
-            }
-        }
-
-        enableResolutionButtons(ResolutionapiResponse.resolutions);
+                    setAllButtonsInactive();
+                    setButtonsActive(['audio-only', 'video-only', 'audiovideo']);
+                    setButtonInsetShadow(clickedButton, true);
+                    enableResolutionButtons(ResolutionapiResponse.resolutions);
                 } else if (clickedButton.classList.contains('video-only')) {
                     selectedFormat = 'video-only';
                     setAllButtonsActive();
@@ -522,7 +513,6 @@
             }
 
             function setButtonsActive(buttonClasses) {
-                debugger;
                 buttonClasses.forEach(buttonClass => {
                     const button = document.querySelector(`.${buttonClass}`);
                     if (button) {
@@ -532,7 +522,7 @@
                         const okIcon = button.parentElement.querySelector('.ok-icon');
 
                         if (crossIcon) {
-                            crossIcon.hidden = false; // Show cross-icon
+                            crossIcon.hidden = true; // Show cross-icon
                         }
 
                         // Optionally hide the check-icon if needed
@@ -544,7 +534,6 @@
             }
 
             function setButtonsInactive(buttonClasses) {
-                debugger;
                 buttonClasses.forEach(buttonClass => {
                     const button = document.querySelector(`.${buttonClass}`);
                     if (button) {
@@ -627,13 +616,27 @@
 
                     if (response.ok) {
                         // Extract filename from Content-Disposition header
-                        const contentDisposition = response.headers.get('Content-Disposition');
-                        const fileNameMatch = contentDisposition && contentDisposition.match(/filename="?(.+)"?/);
-                        const filename = fileNameMatch ? fileNameMatch[1] : 'downloaded_file.mp4';
+                        let contentDisposition = response.headers.get('Content-Disposition');
+                        let filename = '';
 
+
+                        if (contentDisposition) {
+                            // Match filename="..." first, prioritizing this over filename*=
+                            let filenameMatch = contentDisposition.match(/filename="(.+?)"/);
+                            if (filenameMatch) {
+                                filename = filenameMatch[1];
+                            } else {
+                                // Fallback to filename*=UTF-8''... format
+                                let filenameEncodedMatch = contentDisposition.match(/filename\*=\S*''(.+)/);
+                                if (filenameEncodedMatch) {
+                                    // Decode URI component for proper filename
+                                    filename = decodeURIComponent(filenameEncodedMatch[1]);
+                                }
+                            }
+                        }
                         // Create a temporary anchor element to trigger the download
-                        const downloadUrl = window.URL.createObjectURL(await response.blob());
-                        const a = document.createElement('a');
+                        let downloadUrl = window.URL.createObjectURL(await response.blob());
+                        let a = document.createElement('a');
                         a.style.display = 'none';
                         a.href = downloadUrl;
                         a.download = filename;
@@ -659,7 +662,7 @@
                         });
                         document.querySelector('.loader-container').style.display = 'none';
                     }
-
+                        
                     // Call the reset function here
                     resetButtons();
                 } catch (error) {
@@ -675,6 +678,8 @@
                     });
                 }
             }
+
+          
 
 
             // reset all previous positions
@@ -707,6 +712,10 @@
                 // Reset avatar background image
                 const thumbnailElement = document.getElementById('thumbnail');
                 thumbnailElement.style.backgroundImage = 'url("/images/replace-image.png")'; // or any default image
+
+                document.querySelectorAll('.cross-icon').forEach(okIcon => {
+        okIcon.hidden = true; // Example: Hide all ok-icons as well
+    });
             }
 
         })
