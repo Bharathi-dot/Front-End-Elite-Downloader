@@ -434,10 +434,38 @@
                     enableResolutionButtons(ResolutionapiResponse.resolutions);
                 } else if (clickedButton.classList.contains('audio-only')) {
                     selectedFormat = 'audio-only';
-                    setAllButtonsInactive();
-                    setButtonsActive(['audio-only', 'video-only', 'audiovideo']);
-                    setButtonInsetShadow(clickedButton, true);
-                    enableResolutionButtons(ResolutionapiResponse.resolutions);
+        setAllButtonsInactive();
+        setButtonsActive(['audio-only', 'video-only', 'audiovideo']);
+        setButtonInsetShadow(clickedButton, true);
+
+        // Ensure other buttons have their icons set properly
+        document.querySelectorAll('.option').forEach(button => {
+            if (button !== clickedButton) {
+                const crossIcon = button.parentElement.querySelector('.cross-icon');
+                if (crossIcon) {
+                    crossIcon.hidden = false; // Show cross-icon for other buttons
+                }
+                const okIcon = button.parentElement.querySelector('.ok-icon');
+                if (okIcon) {
+                    okIcon.hidden = true; // Hide ok-icon for other buttons
+                }
+            }
+        });
+
+        // Ensure `audio-only` button itself has its icons set properly
+        const audioOnlyButton = document.querySelector('.audio-only');
+        if (audioOnlyButton) {
+            const crossIcon = audioOnlyButton.parentElement.querySelector('.cross-icon');
+            if (crossIcon) {
+                crossIcon.hidden = true; // Hide cross-icon for `audio-only` button
+            }
+            const okIcon = audioOnlyButton.parentElement.querySelector('.ok-icon');
+            if (okIcon) {
+                okIcon.hidden = false; // Show ok-icon for `audio-only` button
+            }
+        }
+
+        enableResolutionButtons(ResolutionapiResponse.resolutions);
                 } else if (clickedButton.classList.contains('video-only')) {
                     selectedFormat = 'video-only';
                     setAllButtonsActive();
@@ -469,8 +497,8 @@
 
                     const crossIcon = button.parentElement.querySelector('.cross-icon');
                     if (crossIcon) {
-                    crossIcon.hidden = true; // Show cross-icon
-                }
+                        crossIcon.hidden = true; // Show cross-icon
+                    }
                 });
             }
 
@@ -480,16 +508,16 @@
                     setButtonInsetShadow(button, false);
 
                     const crossIcon = button.parentElement.querySelector('.cross-icon');
-                const okIcon = button.parentElement.querySelector('.ok-icon');
-                
-                if (crossIcon) {
-                    crossIcon.hidden = false; // Show cross-icon
-                }
+                    const okIcon = button.parentElement.querySelector('.ok-icon');
 
-                // Optionally hide the check-icon if needed
-                if (okIcon) {
-                    okIcon.hidden = true; // Hide ok-icon
-                }
+                    if (crossIcon) {
+                        crossIcon.hidden = false; // Show cross-icon
+                    }
+
+                    // Optionally hide the check-icon if needed
+                    if (okIcon) {
+                        okIcon.hidden = true; // Hide ok-icon
+                    }
                 });
             }
 
@@ -501,16 +529,16 @@
                         button.disabled = false;
 
                         const crossIcon = button.parentElement.querySelector('.cross-icon');
-                const okIcon = button.parentElement.querySelector('.ok-icon');
-                
-                if (crossIcon) {
-                    crossIcon.hidden = false; // Show cross-icon
-                }
+                        const okIcon = button.parentElement.querySelector('.ok-icon');
 
-                // Optionally hide the check-icon if needed
-                if (okIcon) {
-                    okIcon.hidden = true; // Hide ok-icon
-                }
+                        if (crossIcon) {
+                            crossIcon.hidden = false; // Show cross-icon
+                        }
+
+                        // Optionally hide the check-icon if needed
+                        if (okIcon) {
+                            okIcon.hidden = true; // Hide ok-icon
+                        }
                     }
                 });
             }
@@ -528,10 +556,24 @@
             function setButtonInsetShadow(button, isInset) {
                 if (isInset) {
                     button.style.boxShadow = 'var(--box-shadow-inset)';
-                    button.parentElement.querySelector('.ok-icon').hidden = false;
+                    const okIcon = button.parentElement.querySelector('.ok-icon');
+                    if (okIcon) {
+                        okIcon.hidden = false; // Show ok-icon
+                    }
+                    const crossIcon = button.parentElement.querySelector('.cross-icon');
+                    if (crossIcon) {
+                        crossIcon.hidden = true; // Hide cross-icon
+                    }
                 } else {
                     button.style.boxShadow = 'var(--box-shadow)';
-                    button.parentElement.querySelector('.ok-icon').hidden = true;
+                    const okIcon = button.parentElement.querySelector('.ok-icon');
+                    if (okIcon) {
+                        okIcon.hidden = true; // Hide ok-icon
+                    }
+                    const crossIcon = button.parentElement.querySelector('.cross-icon');
+                    if (crossIcon) {
+                        crossIcon.hidden = false; // Show cross-icon
+                    }
                 }
             }
 
