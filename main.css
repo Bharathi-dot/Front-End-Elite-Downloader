@@ -22,11 +22,12 @@
 
 /* Add these CSS classes to represent the different grid-template-rows */
 .container.fetch-layout {
-  grid-template-rows: 80px 100px 55px 150px 350px;
+  grid-template-rows: 100px 55px 150px 350px;
+  margin-bottom: 30px;
 }
 
 .container.submit-layout {
-  grid-template-rows: 80px 100px 150px 350px 55px;
+  grid-template-rows: 100px 150px 350px 55px;
 }
 
 /* ===========//=========== */
@@ -254,15 +255,6 @@
   background-size: contain;
 }
 
-.heading {
-  display: flex;
-  align-items: center;
-  height: 100%;
-  padding-bottom: 0;
-  font-weight: 700;
-  margin-top: 20px;
-}
-
 /* only fonts family */
 .option, #fetchbtn, #download {
   font-family: "Assistant", sans-serif;
@@ -364,6 +356,36 @@
 .cross-icon, .ok-icon {
   position: absolute;
   right: 14px;
+}
+
+footer {
+  background-color: #3e4551;
+  margin: 20px;
+}
+
+.contact-section h5 {
+  margin-bottom: 20px; /* Space below the title */
+  font-weight: bold; /* Bold title */
+}
+
+.contact-section {
+  width: 50%;
+}
+@media (max-width: 992px) {
+  .contact-section {
+    width: 100%;
+  }
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Space between icon and text */
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s;
+  padding: 10px 0; /* Add padding for touch targets */
 }
 
 /*# sourceMappingURL=main.css.map */
