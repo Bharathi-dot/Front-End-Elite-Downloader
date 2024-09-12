@@ -223,7 +223,7 @@
 .options .audiovideo, .options .av-wrapper {
   grid-column: span 2;
 }
-.options .option, .options .btn {
+.options .option {
   display: grid;
   align-items: center;
   background: var(--background-color);
@@ -235,11 +235,13 @@
   background: var(--background-color);
   box-shadow: var(--box-shadow);
   border-radius: 10px;
-  display: grid;
   padding: 10px;
   height: 100%;
   width: 90%;
+  display: flex;
   align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 .non-clickable {
@@ -343,7 +345,7 @@
 .option-wrapper {
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 .option-wrapper input {
@@ -355,7 +357,7 @@
 
 .cross-icon, .ok-icon {
   position: absolute;
-  right: 14px;
+  display: block;
 }
 
 footer {

@@ -207,7 +207,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function disableButtonAndShowIcon(resolution) {
         // Select the button for the specific resolution
-        let button = document.querySelector(`.resolution[value="${resolution}"]`);
+        let button = document.querySelector(`.resolution[data-value="${resolution}"]`);
 
         if (button) {
             // Find the cross icon in the same option-wrapper
@@ -229,7 +229,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         if (clickedButton.classList.contains('resolution')) {
-            selectedResolution = clickedButton.value;
+            selectedResolution = clickedButton.getAttribute('data-value');
             setAllButtonsActive();
             setButtonInsetShadow(clickedButton, true);
             if (selectedFormat) {
@@ -250,7 +250,7 @@ document.addEventListener("DOMContentLoaded", function () {
             setAllButtonsActive();
             setButtonInsetShadow(clickedButton, true);
             if (selectedResolution) {
-                setButtonInsetShadow(document.querySelector(`.resolution[value="${selectedResolution}"]`), true);
+                setButtonInsetShadow(document.querySelector(`.resolution[data-value="${selectedResolution}"]`), true);
             }
             // Ensure audiovideo button is enabled
             document.querySelector('.audiovideo').disabled = false;
@@ -260,7 +260,7 @@ document.addEventListener("DOMContentLoaded", function () {
             setAllButtonsActive();
             setButtonInsetShadow(clickedButton, true);
             if (selectedResolution) {
-                setButtonInsetShadow(document.querySelector(`.resolution[value="${selectedResolution}"]`), true);
+                setButtonInsetShadow(document.querySelector(`.resolution[data-value="${selectedResolution}"]`), true);
             }
             // Ensure video-only button is enabled
             document.querySelector('.video-only').disabled = false;

@@ -19,8 +19,8 @@
 <body style=" background-color: #EEF0F4;">
 
     <nav class="navbar navbar-expand sticky-top  navbar-dark bg-primary ">
-        <a class="navbar-brand ms-auto" href="#">
-            <img src="Elite.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        <a class="navbar-brand ms-5" href="#">
+            <!-- <img src="Elite.png" width="30" height="30" class="d-inline-block align-top" alt=""> -->
             Elite Downloader
         </a>
         <div class="navbar-nav ms-auto me-4">
@@ -57,58 +57,58 @@
             </div>
         </div>
 
-        <button class="btn" id="fetchbtn">Fetch Resolution</button>
+        <button class="btn" id="fetchbtn">  <img src="search.gif" alt="Fetching"  width="25px" height="25px">Show Resolutions</button>
 
         <div class="avatar" id="thumbnail">
         </div>
 
         <div class="options">
             <div class="option-wrapper">
-                <input type="button" class="btn option resolution" value="240">
+                <input type="button" class="btn option resolution" value="240p" data-value="240">
                 <img class="ok-icon" hidden width="28px" height="28px" src="check.png" alt="Selected">
                 <img class="cross-icon" hidden width="52px" height="52px" src="cross.png" alt="Not Available">
 
             </div>
             <div class="option-wrapper">
-                <input type="button" class="btn option resolution" value="360">
+                <input type="button" class="btn option resolution" value="360p" data-value="360">
                 <img class="ok-icon" hidden width="28px" height="28px" src="check.png" alt="Selected">
                 <img class="cross-icon" hidden width="52px" height="52px" src="cross.png" alt="Not Available">
             </div>
             <div class="option-wrapper">
-                <input type="button" class="btn option resolution" value="480">
-                <img class="cross-icon" hidden width="52px" height="52px" src="cross.png" alt="Not Available">
-                <img class="ok-icon" hidden width="28px" height="28px" src="check.png" alt="Selected">
-
-            </div>
-            <div class="option-wrapper">
-                <input type="button" class="btn option resolution" value="720">
+                <input type="button" class="btn option resolution" value="480p" data-value="480">
                 <img class="cross-icon" hidden width="52px" height="52px" src="cross.png" alt="Not Available">
                 <img class="ok-icon" hidden width="28px" height="28px" src="check.png" alt="Selected">
 
             </div>
             <div class="option-wrapper">
-                <input type="button" class="btn option resolution" value="1080">
+                <input type="button" class="btn option resolution" value="720p" data-value="720">
                 <img class="cross-icon" hidden width="52px" height="52px" src="cross.png" alt="Not Available">
                 <img class="ok-icon" hidden width="28px" height="28px" src="check.png" alt="Selected">
 
-
             </div>
             <div class="option-wrapper">
-                <input type="button" class="btn option resolution" value="1440">
+                <input type="button" class="btn option resolution" value="1080p" data-value="1080">
                 <img class="cross-icon" hidden width="52px" height="52px" src="cross.png" alt="Not Available">
                 <img class="ok-icon" hidden width="28px" height="28px" src="check.png" alt="Selected">
 
 
             </div>
             <div class="option-wrapper">
-                <input type="button" class="btn option resolution" value="2160">
+                <input type="button" class="btn option resolution" value="2k" data-value="1440">
                 <img class="cross-icon" hidden width="52px" height="52px" src="cross.png" alt="Not Available">
                 <img class="ok-icon" hidden width="28px" height="28px" src="check.png" alt="Selected">
 
 
             </div>
             <div class="option-wrapper">
-                <input type="button" class="btn option resolution" value="4320">
+                <input type="button" class="btn option resolution" value="4k" data-value="2160" >
+                <img class="cross-icon" hidden width="52px" height="52px" src="cross.png" alt="Not Available">
+                <img class="ok-icon" hidden width="28px" height="28px" src="check.png" alt="Selected">
+
+
+            </div>
+            <div class="option-wrapper">
+                <input type="button" class="btn option resolution" value="8k"  data-value="4320">
 
                 <img class="cross-icon" hidden width="52px" height="52px" src="cross.png" alt="Not Available">
                 <img class="ok-icon" hidden width="28px" height="28px" src="check.png" alt="Selected">
@@ -116,23 +116,19 @@
 
             </div>
             <div class="option-wrapper">
-                <input type="button" class="btn option audio-only " value="only-audio">
-                <img class="cross-icon" hidden width="52px" height="52px" src="cross.png" style="right: -5px;"
-                    alt="Not Available">
-                <img class="ok-icon" hidden width="28px" height="28px" src="check.png" style="right: 8px;"
+                <input type="button" class="btn option audio-only " value="Download Audio" data-value="only-audio">
+                <img class="ok-icon" hidden width="22px" height="22px" src="check.png" style="right: 2px;"
                     alt="Selected">
-
             </div>
             <div class="option-wrapper">
-                <input type="button" class="btn option video-only" value="only-video">
-                <img class="cross-icon" hidden width="52px" height="52px" style="right: -5px;" src="cross.png"
-                    alt="Not Available">
-                <img class="ok-icon" hidden width="28px" height="28px" style="right: 8px;" src="check.png"
+                <input type="button" class="btn option video-only" value="Download Video" data-value="only-video">
+                <img class="ok-icon" hidden width="20px" height="20px" style="right: 4px;" src="check.png"
                     alt="Selected">
             </div>
             <div class="option-wrapper av-wrapper">
                 <img class="ok-icon" hidden width="28px" height="28px" src="check.png" alt="Selected">
-                <input type="button" class="btn option audiovideo " value="audiovideo">
+                <img class="ok-icon" style="left: 60px;"  width="28px" height="28px" src="video.gif" alt="Full Video">
+                <input type="button" class="btn option audiovideo " value="Download Full Video" data-value="audiovideo">
             </div>
 
         </div>
