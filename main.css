@@ -358,6 +358,13 @@
 .cross-icon, .ok-icon {
   position: absolute;
   display: block;
+  right: 10px;
+}
+
+.ok-icon {
+  position: absolute;
+  display: block;
+  right: 20px;
 }
 
 footer {

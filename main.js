@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    var apiEndPoint = "https://localhost:7156";
+    var apiEndPoint = "https://8lsdtb2q-7156.inc1.devtunnels.ms";
     let selectedResolution = '';
     let selectedFormat = '';
     var url = '';
@@ -229,6 +229,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         if (clickedButton.classList.contains('resolution')) {
+            document.querySelector('.check').style.display = 'none';  // Show check.png
+            document.querySelector('.video').style.display = 'block';   // Hide video.gif
+
             selectedResolution = clickedButton.getAttribute('data-value');
             setAllButtonsActive();
             setButtonInsetShadow(clickedButton, true);
@@ -240,12 +243,20 @@ document.addEventListener("DOMContentLoaded", function () {
             }
             enableResolutionButtons(ResolutionapiResponse.resolutions);
         } else if (clickedButton.classList.contains('audio-only')) {
+
+            document.querySelector('.check').style.display = 'none';  // Show check.png
+            document.querySelector('.video').style.display = 'block';   // Hide video.gif
+
             selectedFormat = 'audio-only';
             setAllButtonsInactive();
             setButtonsActive(['audio-only', 'video-only', 'audiovideo']);
             setButtonInsetShadow(clickedButton, true);
             enableResolutionButtons(ResolutionapiResponse.resolutions);
         } else if (clickedButton.classList.contains('video-only')) {
+
+            document.querySelector('.check').style.display = 'none';  // Show check.png
+            document.querySelector('.video').style.display = 'block';   // Hide video.gif
+
             selectedFormat = 'video-only';
             setAllButtonsActive();
             setButtonInsetShadow(clickedButton, true);
@@ -256,6 +267,10 @@ document.addEventListener("DOMContentLoaded", function () {
             document.querySelector('.audiovideo').disabled = false;
             enableResolutionButtons(ResolutionapiResponse.resolutions);
         } else if (clickedButton.classList.contains('audiovideo')) {
+
+            document.querySelector('.check').style.display = 'block';  // Show check.png
+            document.querySelector('.video').style.display = 'none';   // Hide video.gif
+
             selectedFormat = 'audiovideo';
             setAllButtonsActive();
             setButtonInsetShadow(clickedButton, true);
@@ -403,7 +418,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (response.ok) {
                 // Extract filename from Content-Disposition header
-                debugger;
                 let contentDisposition = response.headers.get('Content-Disposition');
                 let filename = 'default-filename.m4a'; // Default filename in case extraction fails
 

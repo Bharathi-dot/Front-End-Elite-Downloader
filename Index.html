@@ -111,13 +111,11 @@
                 <input type="button" class="btn option resolution" value="8k"  data-value="4320">
 
                 <img class="cross-icon" hidden width="52px" height="52px" src="cross.png" alt="Not Available">
-                <img class="ok-icon" hidden width="28px" height="28px" src="check.png" alt="Selected">
-
-
+                <img class="ok-icon" hidden width="28px" height="28px" style="right: 2px;" src="check.png" alt="Selected">
             </div>
             <div class="option-wrapper">
                 <input type="button" class="btn option audio-only " value="Download Audio" data-value="only-audio">
-                <img class="ok-icon" hidden width="22px" height="22px" src="check.png" style="right: 2px;"
+                <img class="ok-icon" hidden width="20px" height="20px" src="check.png" style="right: 2px;"
                     alt="Selected">
             </div>
             <div class="option-wrapper">
@@ -126,15 +124,16 @@
                     alt="Selected">
             </div>
             <div class="option-wrapper av-wrapper">
-                <img class="ok-icon" hidden width="28px" height="28px" src="check.png" alt="Selected">
-                <img class="ok-icon" style="left: 60px;"  width="28px" height="28px" src="video.gif" alt="Full Video">
+                <img class="ok-icon check" style="right: 50px;"      hidden width="28px" height="28px" src="check.png" alt="Selected">
+                <img class="ok-icon video" style="right: 50px;"  width="28px" height="28px" src="video.gif" alt="Full Video">
                 <input type="button" class="btn option audiovideo " value="Download Full Video" data-value="audiovideo">
             </div>
 
         </div>
 
-        <button class="btn" id="download" style="display: none;">download</button>
-
+        <button class="btn" id="download" style="display: none;" >
+            <img class="ok-icon" style='right: 83px;'  width="28px" height="28px" src="download.png" alt="Full Video">
+            download</button>
         <div class="loader-container">
             <div class="spinner"></div>
         </div>
