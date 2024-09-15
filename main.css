@@ -15,6 +15,9 @@
 body {
   background-color: #EEF0F4;
 }
+body .navbar {
+  background-color: #5D5DFF;
+}
 
 .container {
   max-width: none;
@@ -417,7 +420,7 @@ footer {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  height: 29vh;
+  height: 27vh;
   width: 100%;
 }
 

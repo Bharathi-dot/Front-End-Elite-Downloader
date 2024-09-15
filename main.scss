@@ -15,7 +15,13 @@
 }
 body{
     background-color: #EEF0F4;
+
+    .navbar{
+        background-color: #5D5DFF;
+        // background-color: #45B4FC;
+    }
 }
+
 .container{
     max-width:none;
 }
@@ -455,13 +461,14 @@ footer{
     width: 100%;
     
 }
+
 .copy-card{
     
     background-image: url('copy-1.png');
     background-size: contain; 
     background-repeat: no-repeat;
     background-position: center;
-     height: 29vh;
+     height: 27vh;
     width: 100%;
     
 }

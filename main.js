@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    var apiEndPoint = "https://localhost:7156";
+    var apiEndPoint = "https://8lsdtb2q-7156.inc1.devtunnels.ms";
     let selectedResolution = '';
     let selectedFormat = '';
     var url = '';
