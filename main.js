@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    var apiEndPoint = "https://8lsdtb2q-7156.inc1.devtunnels.ms";
+    var apiEndPoint = "https://localhost:7156";
     let selectedResolution = '';
     let selectedFormat = '';
     var url = '';
@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         // Check if the URL is entered and the dropdown option is selected
-        if (url === '' || !(url.includes('https://youtu.be') || url.includes('https://www.instagram.com'))) {
+        if (url === '' || !(url.includes("https://youtube.com/shorts") || url.includes('https://youtu.be') || url.includes('https://www.instagram.com'))) {
             // If URL is empty or URL does not contain the required domains
             notyf.error({
                 message: 'Enter a Valid URL',
@@ -558,7 +558,22 @@ const contactLink = document.getElementById('contact-link');
         //         element.classList.remove('fa-bounce', 'fa-shake');
         //     });
     }
-
-
+//-------for scrolling animation----------//
+const observer = new IntersectionObserver(entries => {
+    // Loop over the entries
+    entries.forEach(entry => {
+      // If the element is visible
+      if (entry.isIntersecting) {
+        // Add the animation class
+        entry.target.classList.add('scroll-animation');
+      }
+    });
+  });
+  
+  const viewbox = document.querySelectorAll('.scroll');
+  viewbox.forEach(image => {
+    observer.observe(image);
+  });
+//  ==============//==========//
    
 })
