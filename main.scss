@@ -13,6 +13,9 @@
     padding: 0;
    
 }
+body{
+    background-color: #EEF0F4;
+}
 .container{
     max-width:none;
 }
@@ -497,7 +500,7 @@ footer{
     background-size:contain; 
     background-repeat: no-repeat;
     background-position: center;
-     height: 40vh;
+     height: 48vh;
     width: 100%;
     
 }
@@ -555,13 +558,21 @@ footer{
 /* Desktop */
 
 @media (min-width: 1200px) {
-    .option-wrapper {
-        input {
-            height: 5.99vh;
-        }
+    .option-wrapper input {
+        height: 5.99vh;
     }
-    // .second-container{
-    //     width: 90%;
-    // }
+
    
+    .copy-card {
+        height: 17vh !important;
+    }
+    .paste-card{
+        height: 9vh;
+    }
+    .platform-card{
+        height: 19vh;
+    }
+    .option-card{
+        height: 41vh;
+    }
 }
