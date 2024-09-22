@@ -1,6 +1,20 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    var apiEndPoint = "https://8lsdtb2q-7156.inc1.devtunnels.ms";
+    //-----------------Show the popup when the page loads-----------------//
+    document.getElementById('disclaimer-popup').style.display = 'flex';
+
+    // Enable the button when the checkbox is checked
+    document.getElementById('agree-checkbox').addEventListener('change', function () {
+        document.getElementById('agree-button').disabled = !this.checked;
+    });
+
+    // Hide the popup when the user clicks "Continue"
+    document.getElementById('agree-button').addEventListener('click', function () {
+        document.getElementById('disclaimer-popup').style.display = 'none';
+    });
+    //=======================//========================//
+
+    var apiEndPoint = "https://localhost:7156";
     let selectedResolution = '';
     let selectedFormat = '';
     var url = '';
@@ -408,11 +422,14 @@ document.addEventListener("DOMContentLoaded", function () {
             payload = { Url: url, Quality: selectedResolution, isInstagram: selectedPlatform == 'instagram' };
         }
 
-
+        const startByte = 0; // Start from the first byte
+        const chunkSize = 1048576; // 1 MB chunk size (in bytes)
         try {
             const response = await fetch(apiEndpoint, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json',
+                     'Range': `bytes=${startByte}-${chunkSize - 1}`
+                 },
                 body: JSON.stringify(payload)
             });
 
@@ -444,6 +461,31 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.body.appendChild(a);
                 a.click();
                 window.URL.revokeObjectURL(downloadUrl);
+
+ // Now request the rest of the file from 1 MB onwards
+ const fileSize = response.headers.get('Content-Length');
+ if (fileSize) {
+     let responseRest = await fetch(apiEndpoint, {
+         method: 'POST',
+         headers: {
+             'Content-Type': 'application/json',
+             'Range': `bytes=${chunkSize}-` // Continue downloading from 1 MB onwards
+         },
+         body: JSON.stringify(payload)
+     });
+
+     if (responseRest.ok) {
+         // Handle the rest of the file similarly
+         let downloadUrlRest = window.URL.createObjectURL(await responseRest.blob());
+         let aRest = document.createElement('a');
+         aRest.style.display = 'none';
+         aRest.href = downloadUrlRest;
+         aRest.download = filename;
+         document.body.appendChild(aRest);
+         aRest.click();
+         window.URL.revokeObjectURL(downloadUrlRest);
+     }
+    }    
 
                 // Hide the loader and show success message
                 document.querySelector('.loader-container').style.display = 'none';
