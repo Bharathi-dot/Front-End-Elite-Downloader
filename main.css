@@ -486,29 +486,24 @@ footer {
   align-items: center;
   justify-content: center;
 }
-
-.popup-content {
+.popup .popup-content {
   background-color: #fff;
   padding: 30px;
   width: 400px;
   border-radius: 10px;
   text-align: center;
 }
-
-.popup-content h3 {
+.popup .popup-content h3 {
   margin-bottom: 15px;
 }
-
-.popup-content p {
+.popup .popup-content p {
   font-size: 1rem;
   margin-bottom: 20px;
 }
-
-.popup-content input[type=checkbox] {
+.popup .popup-content input[type=checkbox] {
   margin-right: 10px;
 }
-
-.popup-content button {
+.popup .popup-content button {
   background-color: #007BFF;
   color: white;
   padding: 10px 20px;
@@ -516,9 +511,38 @@ footer {
   cursor: pointer;
   border-radius: 5px;
 }
-
-.popup-content button:disabled {
+.popup .popup-content button:disabled {
   background-color: #ccc;
+}
+
+.footer-container {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: white;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.footer-links a {
+  text-decoration: none;
+}
+
+.how-to-download-1, .how-to-download-2 {
+  font-weight: bold; /* Makes the text bold */
+  color: #5D5DFF; /* Changes the text color (dark gray) */
+  text-transform: uppercase; /* Converts the text to uppercase */
+  margin-bottom: 20px; /* Adds spacing below the text */
+  padding: 2px;
+  text-align: center; /* Ensures text is centered */
+}
+.how-to-download-1 p, .how-to-download-2 p {
+  margin: 0; /* Removes default margins from <p> */
+  font-size: 1.5rem; /* Adjust the font size */
+  color: #5D5DFF; /* Optional: Changes the text color to blue */
 }
 
 @keyframes enter-animation {
@@ -537,6 +561,27 @@ footer {
   }
 }
 /* Mobiles */
+@media (max-width: 576px) {
+  .footer-links .vertical-bar:nth-of-type(1) {
+    display: none;
+  }
+  .how-to-download-1 {
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
+  }
+  .how-to-download-2 {
+    display: block;
+  }
+}
+@media (min-width: 576px) {
+  .how-to-download-1 {
+    display: block;
+  }
+  .how-to-download-2 {
+    display: none;
+  }
+}
 /* Tablets */
 @media (min-width: 768px) and (max-width: 991px) {
   .second-container {

@@ -10,12 +10,20 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
     <link href="main.css" rel="stylesheet" />
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HK51LFQ6EW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HK51LFQ6EW');
+</script>
 </head>
 <body>
 
     <nav class="navbar navbar-expand sticky-top">
         <a class="navbar-brand ms-5" href="#" style="color: white;font-weight: 600;">
-            <!-- <img src="Elite.png" width="30" height="30" class="d-inline-block align-top" alt=""> -->
             Elite Downloader
         </a>
         <div class="navbar-nav ms-auto me-4">
@@ -141,10 +149,12 @@
             <div class="spinner"></div>
         </div>
     </div>
-    <div class="container second-container ">
+    <div class="container second-container" >
         <div class="row mt-4">
-            <div class="col-sm-6 col-md-6 col-lg-6 mb-4">
-                <div id="guid" class="card scroll  h-100 ">
+            <div class="col-12 text-center h3 how-to-download-1" ><p>--- How to Download ---</p></div>
+
+            <div class="col-sm-6 col-md-6 col-lg-6 mb-4" id="guid">
+                <div  class="card scroll  h-100 ">
                     <div class="card-body w-100">
                         <div class="row g-0">
                             <div class="col-lg-4">
@@ -163,6 +173,7 @@
                     </div>
                 </div>
             </div>
+            <div class="col-12 text-center h3 how-to-download-2" ><p>--- How to Download ---</p></div>
             <div class=" col-sm-6 col-md-6 col-lg-6 mb-4">
                 <div class="card scroll  h-100 ">
                     <div class="card-body">
@@ -233,7 +244,7 @@
                     </div>
                 </div>
             </div>
-            <div class=" col-sm-12 col-md-12 col-lg-12   mb-4">
+            <div class=" col-sm-12 col-md-12 col-lg-12 mb-4">
                 <div class="card scroll  h-100">
                     <div class="card-body">
                         <div class="download-card"></div>
@@ -271,17 +282,18 @@
                 </a>
             </div>
         </section>
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2); color: #fff;">
-            <a href="terms-and-conditions.html" class="text-white">Terms and Conditions</a> |
-            <a href="disclaimer.html" class="text-white">Disclaimer</a> | 
-            <a href="privacy-policy.html" class="text-white">Privacy Policy</a>
-            <br>© 2024 <a class="text-white" href="https://elitedownloader.in" target="_blank" rel="noopener noreferrer">elitdownloader.in</a> All rights reserved.
-        </div>      
-        
+        <div class="footer-container p-3 text-center text-lg-start d-flex flex-column flex-lg-row justify-content-lg-around align-items-center">
+            <div class="footer-links mb-2 mb-lg-0">
+                <a href="privacy-policy.html" class="text-white ms-2">Privacy Policy</a> |
+                <a href="disclaimer.html" class="text-white ms-lg-2 me-2">Disclaimer</a>  <span class="vertical-bar"> | </span>
+                <br>
+                <a href="terms-and-conditions.html" class="text-white me-2">Terms and Conditions</a>
+            </div>
+            <div class="footer-copyright">
+                © 2024 <a class="text-white" href="https://elitedownloader.in" target="_blank" rel="noopener noreferrer">elitdownloader.in</a> All rights reserved.
+            </div>
+        </div>
     </footer>
-
-
-
     <!-- Popup for Disclaimer -->
 <div class="popup" id="disclaimer-popup">
     <div class="popup-content">
