@@ -1,18 +1,41 @@
 document.addEventListener("DOMContentLoaded", function () {
 
     //-----------------Show the popup when the page loads-----------------//
-    // document.getElementById('disclaimer-popup').style.display = 'flex';
+    document.getElementById('disclaimer-popup').style.display = 'flex';
 
-    // // Enable the button when the checkbox is checked
-    // document.getElementById('agree-checkbox').addEventListener('change', function () {
-    //     document.getElementById('agree-button').disabled = !this.checked;
-    // });
+    // Enable the button when the checkbox is checked
+    document.getElementById('agree-checkbox').addEventListener('change', function () {
+        document.getElementById('agree-button').disabled = !this.checked;
+    });
 
-    // // Hide the popup when the user clicks "Continue"
-    // document.getElementById('agree-button').addEventListener('click', function () {
-    //     document.getElementById('disclaimer-popup').style.display = 'none';
-    // });
+    // Hide the popup when the user clicks "Continue"
+    document.getElementById('agree-button').addEventListener('click', function () {
+        document.getElementById('disclaimer-popup').style.display = 'none';
+    });
     //=======================//========================//
+
+
+    //-----------For guide button----------//
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            const navbarHeight = document.querySelector('.navbar').offsetHeight;
+
+            window.scrollTo({
+                top: targetElement.offsetTop - navbarHeight, // Adjust scroll position by navbar height
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    //================//=============//
+
+
+
 
     var apiEndPoint = "https://localhost:7156";
     let selectedResolution = '';
@@ -421,23 +444,24 @@ document.addEventListener("DOMContentLoaded", function () {
             apiEndpoint = `${apiEndPoint}/api/VideoProcessing/download-Video-Audio`;
             payload = { Url: url, Quality: selectedResolution, isInstagram: selectedPlatform == 'instagram' };
         }
-
         const startByte = 0; // Start from the first byte
         const chunkSize = 1048576; // 1 MB chunk size (in bytes)
+        
         try {
             const response = await fetch(apiEndpoint, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json',
-                     'Range': `bytes=${startByte}-${chunkSize - 1}`
-                 },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Range': `bytes=${startByte}-${chunkSize - 1}`
+                },
                 body: JSON.stringify(payload)
             });
-
+        
             if (response.ok) {
                 // Extract filename from Content-Disposition header
                 let contentDisposition = response.headers.get('Content-Disposition');
                 let filename = 'default-filename.m4a'; // Default filename in case extraction fails
-
+        
                 if (contentDisposition) {
                     // Check for UTF-8 filename first
                     let filenameEncodedMatch = contentDisposition.match(/filename\*=(?:UTF-8'')?(.+)/);
@@ -451,54 +475,56 @@ document.addEventListener("DOMContentLoaded", function () {
                         }
                     }
                 }
-
-                // Create a temporary anchor element to trigger the download
+        
+                // Create a temporary anchor element, but do not automatically click it
                 let downloadUrl = window.URL.createObjectURL(await response.blob());
-                let a = document.createElement('a');
-                a.style.display = 'none';
-                a.href = downloadUrl;
-                a.download = filename; // Use extracted or default filename
-                document.body.appendChild(a);
-                a.click();
-                window.URL.revokeObjectURL(downloadUrl);
-
- // Now request the rest of the file from 1 MB onwards
- const fileSize = response.headers.get('Content-Length');
- if (fileSize) {
-     let responseRest = await fetch(apiEndpoint, {
-         method: 'POST',
-         headers: {
-             'Content-Type': 'application/json',
-             'Range': `bytes=${chunkSize}-` // Continue downloading from 1 MB onwards
-         },
-         body: JSON.stringify(payload)
-     });
-
-     if (responseRest.ok) {
-         // Handle the rest of the file similarly
-         let downloadUrlRest = window.URL.createObjectURL(await responseRest.blob());
-         let aRest = document.createElement('a');
-         aRest.style.display = 'none';
-         aRest.href = downloadUrlRest;
-         aRest.download = filename;
-         document.body.appendChild(aRest);
-         aRest.click();
-         window.URL.revokeObjectURL(downloadUrlRest);
-     }
-    }    
-
-                // Hide the loader and show success message
-                document.querySelector('.loader-container').style.display = 'none';
+                let downloadLink = document.createElement('a');
+                downloadLink.style.display = 'none'; // Initially hidden
+        
+                downloadLink.href = downloadUrl;
+                downloadLink.download = filename; // Use extracted or default filename
+                downloadLink.innerText = 'Click here to download the file'; // Add text to the link
+        
+                // Append the link to the document body or some container element
+                document.body.appendChild(downloadLink);
+        
+                // After successful request, display the download link for manual click
                 Swal.fire({
-                    title: "Download Successful!",
-                    text: "Your file has been downloaded successfully.",
+                    title: "Download Ready!",
+                    html: `<a href="${downloadUrl}" download="${filename}" style="color: #3085d6; text-decoration: underline;">Click here to download your file</a>`,
                     icon: "success",
                     confirmButtonColor: "#3085d6",
                     confirmButtonText: "OK"
                 });
-
+        
+                // Now request the rest of the file from 1 MB onwards
+                const fileSize = response.headers.get('Content-Length');
+                if (fileSize) {
+                    let responseRest = await fetch(apiEndpoint, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Range': `bytes=${chunkSize}-` // Continue downloading from 1 MB onwards
+                        },
+                        body: JSON.stringify(payload)
+                    });
+        
+                    if (responseRest.ok) {
+                        // Handle the rest of the file similarly
+                        let downloadUrlRest = window.URL.createObjectURL(await responseRest.blob());
+                        let aRest = document.createElement('a');
+                        aRest.style.display = 'none';
+                        aRest.href = downloadUrlRest;
+                        aRest.download = filename;
+                        document.body.appendChild(aRest);
+                        window.URL.revokeObjectURL(downloadUrlRest);
+                    }
+                }
+        
+                // Hide the loader
+                document.querySelector('.loader-container').style.display = 'none';
             } else {
-                const result = await response.text();;
+                const result = await response.text();
                 Swal.fire({
                     title: "Download Failed",
                     text: `Error: ${result.message}`,
@@ -508,13 +534,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
                 document.querySelector('.loader-container').style.display = 'none';
             }
-
+        
             // Call the reset function here
             resetButtons();
         } catch (error) {
             console.error('Error during download:', error);
             document.querySelector('.loader-container').style.display = 'none';
-
+        
             Swal.fire({
                 title: "Download Failed",
                 text: "An error occurred while processing your download request.",
@@ -523,11 +549,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 confirmButtonText: "OK"
             });
         }
+        
     }
 
-//for nav icons toogle 
+    //for nav icons toogle 
 
-const contactLink = document.getElementById('contact-link');
+    const contactLink = document.getElementById('contact-link');
     const guideLink = document.getElementById('guide-link');
 
     const contactIcon = document.getElementById('contact-icon');
@@ -587,35 +614,23 @@ const contactLink = document.getElementById('contact-link');
         document.querySelectorAll('.cross-icon').forEach(okIcon => {
             okIcon.hidden = true; // Example: Hide all ok-icons as well
         });
-
-
-        // Remove both 'instagram-selected' and 'youtube-selected' classes
-        // locationItems.forEach(item => {
-        //     item.classList.remove('instagram-selected', 'youtube-selected', 'location--selected');
-        // });
-
-        //       // Remove 'fa-bounce' and 'fa-shake' classes from <p> and <i> elements inside .location
-        //         const pTags = item.querySelectorAll('p, i');
-        //     pTags.forEach(element => {
-        //         element.classList.remove('fa-bounce', 'fa-shake');
-        //     });
     }
-//-------for scrolling animation----------//
-const observer = new IntersectionObserver(entries => {
-    // Loop over the entries
-    entries.forEach(entry => {
-      // If the element is visible
-      if (entry.isIntersecting) {
-        // Add the animation class
-        entry.target.classList.add('scroll-animation');
-      }
+    //-------for scrolling animation----------//
+    const observer = new IntersectionObserver(entries => {
+        // Loop over the entries
+        entries.forEach(entry => {
+            // If the element is visible
+            if (entry.isIntersecting) {
+                // Add the animation class
+                entry.target.classList.add('scroll-animation');
+            }
+        });
     });
-  });
-  
-  const viewbox = document.querySelectorAll('.scroll');
-  viewbox.forEach(image => {
-    observer.observe(image);
-  });
-//  ==============//==========//
-   
+
+    const viewbox = document.querySelectorAll('.scroll');
+    viewbox.forEach(image => {
+        observer.observe(image);
+    });
+    //  ==============//==========//
+
 })

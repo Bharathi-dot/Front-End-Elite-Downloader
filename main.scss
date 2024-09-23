@@ -544,7 +544,7 @@ footer{
         .popup-content {
             background-color: #fff;
             padding: 30px;
-            width: 400px;
+            width: 90%;
             border-radius: 10px;
             text-align: center;
         }
@@ -632,7 +632,7 @@ footer{
 
 
     /* Mobiles */
-    @media (max-width: 576px) {
+    @media (max-width: 767px) {
         .footer-links .vertical-bar:nth-of-type(1) {
             display: none;
         }
@@ -662,7 +662,19 @@ footer{
         width: 90%;
     }
     
+    .popup-content {
+        width: 70% !important;
+     }
 }
+
+
+/* Laptops */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .popup-content {
+        width: 70% !important;
+     }
+}
+
 /* Desktop */
 
 @media (min-width: 1200px) {
@@ -682,5 +694,10 @@ footer{
     }
     .option-card{
         height: 41vh;
+    }
+
+
+    .popup-content {
+       width: 70% !important;
     }
 }
