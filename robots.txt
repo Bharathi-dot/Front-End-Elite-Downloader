@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://bharathi-dot.github.io/Front-End-Elite-Downloader/sitemap.xml
