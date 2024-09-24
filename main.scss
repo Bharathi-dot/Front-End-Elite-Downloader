@@ -278,7 +278,7 @@ body{
 .avatar {
     width: 100%; /* Adjust as needed */
     height: 90%; /* Adjust as needed */
-    background-image: url("replace-image.png");
+    background-image: url("downloader.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -453,7 +453,7 @@ footer{
 
 .elite-card{
     
-    background-image: url('empty-elite.png');
+    background-image: url('Elite Downloader.png');
     background-size:contain; 
     background-repeat: no-repeat;
     background-position: center;
@@ -464,7 +464,7 @@ footer{
 
 .copy-card{
     
-    background-image: url('copy-1.png');
+    background-image: url('copy url.png');
     background-size: contain; 
     background-repeat: no-repeat;
     background-position: center;
@@ -474,7 +474,7 @@ footer{
 }
 .paste-card{
     
-    background-image: url('paste-with-hand.png');
+    background-image: url('paste-url.png');
     background-size:contain; 
     background-repeat: no-repeat;
     background-position: center;
@@ -596,15 +596,13 @@ footer{
 .how-to-download-1 , .how-to-download-2{
     font-weight: bold; /* Makes the text bold */
     color: #5D5DFF; /* Changes the text color (dark gray) */
-    text-transform: uppercase; /* Converts the text to uppercase */
     margin-bottom: 20px; /* Adds spacing below the text */
-    padding: 2px;
     text-align: center; /* Ensures text is centered */
 
 
- p {
-    margin: 0; /* Removes default margins from <p> */
-    font-size: 1.5rem; /* Adjust the font size */
+ h2{
+ 
+ font-weight: 700;
     color: #5D5DFF; /* Optional: Changes the text color to blue */
 }
 }
