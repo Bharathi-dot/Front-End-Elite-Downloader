@@ -266,7 +266,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         if (clickedButton.classList.contains('resolution')) {
-            document.querySelector('.check').style.display = 'none';  // Show check.png
+            document.querySelector('.check').style.display = 'none';  // Show check.webp
             document.querySelector('.video').style.display = 'block';   // Hide video.gif
 
             selectedResolution = clickedButton.getAttribute('data-value');
@@ -281,7 +281,7 @@ document.addEventListener("DOMContentLoaded", function () {
             enableResolutionButtons(ResolutionapiResponse.resolutions);
         } else if (clickedButton.classList.contains('audio-only')) {
 
-            document.querySelector('.check').style.display = 'none';  // Show check.png
+            document.querySelector('.check').style.display = 'none';  // Show check.webp
             document.querySelector('.video').style.display = 'block';   // Hide video.gif
 
             selectedFormat = 'audio-only';
@@ -291,7 +291,7 @@ document.addEventListener("DOMContentLoaded", function () {
             enableResolutionButtons(ResolutionapiResponse.resolutions);
         } else if (clickedButton.classList.contains('video-only')) {
 
-            document.querySelector('.check').style.display = 'none';  // Show check.png
+            document.querySelector('.check').style.display = 'none';  // Show check.webp
             document.querySelector('.video').style.display = 'block';   // Hide video.gif
 
             selectedFormat = 'video-only';
@@ -305,7 +305,7 @@ document.addEventListener("DOMContentLoaded", function () {
             enableResolutionButtons(ResolutionapiResponse.resolutions);
         } else if (clickedButton.classList.contains('audiovideo')) {
 
-            document.querySelector('.check').style.display = 'block';  // Show check.png
+            document.querySelector('.check').style.display = 'block';  // Show check.webp
             document.querySelector('.video').style.display = 'none';   // Hide video.gif
 
             selectedFormat = 'audiovideo';
@@ -561,10 +561,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const guideIcon = document.getElementById('guide-icon');
 
     // Default icons
-    const contactOutline = 'contact-outline.png';
-    const contactSolid = 'contact-solid.png';
-    const guideOutline = 'guide-outline.png';
-    const guideSolid = 'guide-solid.png';
+    const contactOutline = 'contact-outline.webp';
+    const contactSolid = 'contact-solid.webp';
+    const guideOutline = 'guide-outline.webp';
+    const guideSolid = 'guide-solid.webp';
 
     // Click event for Contact link
     contactLink.addEventListener('click', function () {
@@ -609,7 +609,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Reset avatar background image
         const thumbnailElement = document.getElementById('thumbnail');
-        thumbnailElement.style.backgroundImage = 'url("/images/replace-image.png")'; // or any default image
+        thumbnailElement.style.backgroundImage = 'url("/images/replace-image.webp")'; // or any default image
 
         document.querySelectorAll('.cross-icon').forEach(okIcon => {
             okIcon.hidden = true; // Example: Hide all ok-icons as well
