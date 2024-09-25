@@ -1,20 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
 
     //-----------------Show the popup when the page loads-----------------//
-    window.onload = function() {
-    document.getElementById('disclaimer-popup').style.display = 'block';
-};
-
-
-    // Enable the button when the checkbox is checked
-    document.getElementById('agree-checkbox').addEventListener('change', function () {
-        document.getElementById('agree-button').disabled = !this.checked;
-    });
-
-    // Hide the popup when the user clicks "Continue"
-    document.getElementById('agree-button').addEventListener('click', function () {
-        document.getElementById('disclaimer-popup').style.display = 'none';
-    });
+   
     //=======================//========================//
 
 
