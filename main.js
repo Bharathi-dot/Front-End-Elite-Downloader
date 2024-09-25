@@ -221,13 +221,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-
-
-
-
-
-
-
     function enableResolutionButtons(resolutions) {
 
 
