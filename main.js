@@ -518,11 +518,11 @@ document.addEventListener("DOMContentLoaded", function () {
                         aRest.download = filename;
                         document.body.appendChild(aRest);
                         window.URL.revokeObjectURL(downloadUrlRest);
+                        // Hide the loader
+                        document.querySelector('.loader-container').style.display = 'none';
                     }
                 }
         
-                // Hide the loader
-                document.querySelector('.loader-container').style.display = 'none';
             } else {
                 const result = await response.text();
                 Swal.fire({
@@ -548,6 +548,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 confirmButtonColor: "#3085d6",
                 confirmButtonText: "OK"
             });
+            document.querySelector('.loader-container').style.display = 'none';
+
         }
         
     }
