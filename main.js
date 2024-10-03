@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-    var apiEndPoint = "https://localhost:7156";
+    var apiEndPoint = "https://api.elitedownloader.in";
     let selectedResolution = '';
     let selectedFormat = '';
     var url = '';
