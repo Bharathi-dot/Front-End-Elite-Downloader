@@ -51,62 +51,6 @@ document.addEventListener("DOMContentLoaded", function () {
         button.classList.add("non-clickable");
 
     });
-    //=======//========//
-
-    // --- For dropdown selecting purpose --- //
-    // let locationButtons = document.getElementsByClassName('location');
-
-    // Array.from(locationButtons).forEach(function (locationButton) {
-    //     locationButton.addEventListener('click', pressedLocation);
-    // });
-
-    // function pressedLocation() {
-    //     let selected = document.getElementsByClassName('location--selected');
-    //     if (selected.length > 0) {
-    //         selected[0].classList.remove('location--selected');
-    //     }
-    //     this.classList.add('location--selected');
-    //     console.log('Selected location:', this.getAttribute('location')); // Debugging log
-    // }
-
-    // // --- For dropdown arrow toggle --- //
-    // document.getElementsByClassName('drop-arrow')[0].addEventListener('click', dropButton);
-
-    // function dropButton() {
-    //     this.classList.toggle('button--pushed');
-    //     document.getElementsByClassName('location-container')[0].classList.toggle('opened');
-    //     console.log('Dropdown toggled'); // Debugging log
-    // }
-
-    // // Function to reset icon classes and remove specific selected classes
-    // function resetIconClasses() {
-    //     document.querySelectorAll('.location').forEach(location => {
-    //         location.classList.remove('instagram-selected', 'youtube-selected');
-    //         const icon = location.querySelector('i');
-    //         if (icon) {
-    //             icon.classList.remove('fa-shake', 'fa-bounce');
-    //         }
-    //     });
-    //     console.log('Reset icon classes');
-    // }
-
-    // // Event listener for Instagram selection
-    // document.querySelector('.location[location="INSTAGRAM"]').addEventListener('click', function () {
-    //     resetIconClasses(); // Reset classes first
-    //     this.classList.add('instagram-selected'); // Add Instagram-specific class
-    //     this.querySelector('i').classList.add('fa-shake'); // Apply shake effect to icon
-
-    // });
-
-    // // Event listener for YouTube selection
-    // document.querySelector('.location[location="YOUTUBE"]').addEventListener('click', function () {
-    //     resetIconClasses(); // Reset classes first
-    //     this.classList.add('youtube-selected'); // Add YouTube-specific class
-    //     this.querySelector('i').classList.add('fa-bounce'); // Apply bounce effect to icon
-
-    // });
-
-
 
     //==========//============//
 
