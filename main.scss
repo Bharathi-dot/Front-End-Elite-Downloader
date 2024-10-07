@@ -181,7 +181,7 @@ body{
     background-color: var(--background-color);
     border-radius: 30px;
     font-weight: 800;
-    width: 90%;
+    width: 100%;
 }
 
 .form-floating input {
@@ -594,11 +594,13 @@ footer{
 
 
 .how-to-download-1 , .how-to-download-2{
+    height: 5vh;
     font-weight: bold; /* Makes the text bold */
     color: #5D5DFF; /* Changes the text color (dark gray) */
-    margin-bottom: 20px; /* Adds spacing below the text */
+    // margin-bottom: 20px; /* Adds spacing below the text */
     text-align: center; /* Ensures text is centered */
-
+display: flex;
+align-items: center;
 
  h2{
  
@@ -648,10 +650,14 @@ footer{
     @media (min-width: 576px) {
         .how-to-download-1 {
             display: block;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     
         .how-to-download-2 {
            display: none;
+           
         }
     }
 /* Tablets */

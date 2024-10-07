@@ -171,7 +171,7 @@ body .navbar {
   background-color: var(--background-color);
   border-radius: 30px;
   font-weight: 800;
-  width: 90%;
+  width: 100%;
 }
 
 .form-floating input {
@@ -532,10 +532,12 @@ footer {
 }
 
 .how-to-download-1, .how-to-download-2 {
+  height: 5vh;
   font-weight: bold; /* Makes the text bold */
   color: #5D5DFF; /* Changes the text color (dark gray) */
-  margin-bottom: 20px; /* Adds spacing below the text */
   text-align: center; /* Ensures text is centered */
+  display: flex;
+  align-items: center;
 }
 .how-to-download-1 h2, .how-to-download-2 h2 {
   font-weight: 700;
@@ -574,6 +576,9 @@ footer {
 @media (min-width: 576px) {
   .how-to-download-1 {
     display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .how-to-download-2 {
     display: none;

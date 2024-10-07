@@ -37,7 +37,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-    var apiEndPoint = "https://api.elitedownloader.in";
+    // var apiEndPoint = "https://api.elitedownloader.in";
+    var apiEndPoint = "https://localhost:7156";
     let selectedResolution = '';
     let selectedFormat = '';
     var url = '';
@@ -53,57 +54,57 @@ document.addEventListener("DOMContentLoaded", function () {
     //=======//========//
 
     // --- For dropdown selecting purpose --- //
-    let locationButtons = document.getElementsByClassName('location');
+    // let locationButtons = document.getElementsByClassName('location');
 
-    Array.from(locationButtons).forEach(function (locationButton) {
-        locationButton.addEventListener('click', pressedLocation);
-    });
+    // Array.from(locationButtons).forEach(function (locationButton) {
+    //     locationButton.addEventListener('click', pressedLocation);
+    // });
 
-    function pressedLocation() {
-        let selected = document.getElementsByClassName('location--selected');
-        if (selected.length > 0) {
-            selected[0].classList.remove('location--selected');
-        }
-        this.classList.add('location--selected');
-        console.log('Selected location:', this.getAttribute('location')); // Debugging log
-    }
+    // function pressedLocation() {
+    //     let selected = document.getElementsByClassName('location--selected');
+    //     if (selected.length > 0) {
+    //         selected[0].classList.remove('location--selected');
+    //     }
+    //     this.classList.add('location--selected');
+    //     console.log('Selected location:', this.getAttribute('location')); // Debugging log
+    // }
 
-    // --- For dropdown arrow toggle --- //
-    document.getElementsByClassName('drop-arrow')[0].addEventListener('click', dropButton);
+    // // --- For dropdown arrow toggle --- //
+    // document.getElementsByClassName('drop-arrow')[0].addEventListener('click', dropButton);
 
-    function dropButton() {
-        this.classList.toggle('button--pushed');
-        document.getElementsByClassName('location-container')[0].classList.toggle('opened');
-        console.log('Dropdown toggled'); // Debugging log
-    }
+    // function dropButton() {
+    //     this.classList.toggle('button--pushed');
+    //     document.getElementsByClassName('location-container')[0].classList.toggle('opened');
+    //     console.log('Dropdown toggled'); // Debugging log
+    // }
 
-    // Function to reset icon classes and remove specific selected classes
-    function resetIconClasses() {
-        document.querySelectorAll('.location').forEach(location => {
-            location.classList.remove('instagram-selected', 'youtube-selected');
-            const icon = location.querySelector('i');
-            if (icon) {
-                icon.classList.remove('fa-shake', 'fa-bounce');
-            }
-        });
-        console.log('Reset icon classes');
-    }
+    // // Function to reset icon classes and remove specific selected classes
+    // function resetIconClasses() {
+    //     document.querySelectorAll('.location').forEach(location => {
+    //         location.classList.remove('instagram-selected', 'youtube-selected');
+    //         const icon = location.querySelector('i');
+    //         if (icon) {
+    //             icon.classList.remove('fa-shake', 'fa-bounce');
+    //         }
+    //     });
+    //     console.log('Reset icon classes');
+    // }
 
-    // Event listener for Instagram selection
-    document.querySelector('.location[location="INSTAGRAM"]').addEventListener('click', function () {
-        resetIconClasses(); // Reset classes first
-        this.classList.add('instagram-selected'); // Add Instagram-specific class
-        this.querySelector('i').classList.add('fa-shake'); // Apply shake effect to icon
+    // // Event listener for Instagram selection
+    // document.querySelector('.location[location="INSTAGRAM"]').addEventListener('click', function () {
+    //     resetIconClasses(); // Reset classes first
+    //     this.classList.add('instagram-selected'); // Add Instagram-specific class
+    //     this.querySelector('i').classList.add('fa-shake'); // Apply shake effect to icon
 
-    });
+    // });
 
-    // Event listener for YouTube selection
-    document.querySelector('.location[location="YOUTUBE"]').addEventListener('click', function () {
-        resetIconClasses(); // Reset classes first
-        this.classList.add('youtube-selected'); // Add YouTube-specific class
-        this.querySelector('i').classList.add('fa-bounce'); // Apply bounce effect to icon
+    // // Event listener for YouTube selection
+    // document.querySelector('.location[location="YOUTUBE"]').addEventListener('click', function () {
+    //     resetIconClasses(); // Reset classes first
+    //     this.classList.add('youtube-selected'); // Add YouTube-specific class
+    //     this.querySelector('i').classList.add('fa-bounce'); // Apply bounce effect to icon
 
-    });
+    // });
 
 
 
@@ -132,26 +133,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         // Check if the URL is entered and the dropdown option is selected
-        if (url === '' || !(url.includes("https://youtube.com/shorts") || url.includes('https://youtu.be') || url.includes('https://www.instagram.com'))) {
+        if (url === '' || !(url.includes("https://youtube.com/shorts") || url.includes('https://youtu.be'))) {
             // If URL is empty or URL does not contain the required domains
             notyf.error({
                 message: 'Enter a Valid URL',
                 className: 'toast-margin'
             });
 
-        } else if (selectedPlatform === null) {
-            // If no platform is selected
-            notyf.error({
-                message: 'Select a format from the dropdown menu',
-                className: 'toast-margin'
-            });
-        } else if ((url.includes('instagram') && selectedPlatform === 'youtube') ||
-            (url.includes('youtu') && selectedPlatform === 'instagram')) {
-            // If URL and platform do not match
-            notyf.error({
-                message: 'Wrong format selected',
-                className: 'toast-margin'
-            });
         } else {
             // Both conditions are met, proceed with enabling buttons and layout change
             optionButtons.forEach(button => {
@@ -173,10 +161,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     async function fetchResolution() {
+        debugger;
         document.querySelector('.loader-container').style.display = 'flex';
 
         const url = document.getElementById('videoUrl').value;
-        let selectedPlatform = document.querySelector('.location--selected p').innerText.trim().toLowerCase(); // will be either 'instagram' or 'youtube'
 
         try {
             const response = await fetch(`${apiEndPoint}/api/VideoProcessing/get-resolutions`, {
@@ -184,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ url, isInstagram: selectedPlatform == 'instagram' })
+                body: JSON.stringify({ url })
             }).finally(() => {
                 // Hide the loader
                 document.querySelector('.loader-container').style.display = 'none';
@@ -195,7 +183,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             const data = await response.json();
-            console.log(data.resolutions)
 
             // Store the API response
             ResolutionapiResponse = data;
@@ -421,21 +408,20 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         document.querySelector('.loader-container').style.display = 'flex';
-        let selectedPlatform = document.querySelector('.location--selected p').innerText.trim().toLowerCase(); // will be either 'instagram' or 'youtube'
         let url = document.getElementById('videoUrl').value;
         let apiEndpoint;
         let payload;
 
         if (selectedFormat === 'audio-only') {
             apiEndpoint = `${apiEndPoint}/api/VideoProcessing/download-best-audio`;
-            payload = { Url: url, isInstagram: selectedPlatform == 'instagram' };
+            payload = { Url: url };
         } else if (selectedFormat === 'video-only') {
             apiEndpoint = `${apiEndPoint}/api/VideoProcessing/download-best-video`;
-            payload = { Url: url, Quality: selectedResolution, isInstagram: selectedPlatform == 'instagram' };
+            payload = { Url: url, Quality: selectedResolution };
 
         } else if (selectedFormat === 'audiovideo') {
             apiEndpoint = `${apiEndPoint}/api/VideoProcessing/download-Video-Audio`;
-            payload = { Url: url, Quality: selectedResolution, isInstagram: selectedPlatform == 'instagram' };
+            payload = { Url: url, Quality: selectedResolution };
         }
         const startByte = 0; // Start from the first byte
         const chunkSize = 1048576; // 1 MB chunk size (in bytes)
