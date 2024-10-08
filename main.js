@@ -37,7 +37,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-    var apiEndPoint = "https://api.elitedownloader.in";
+    // var apiEndPoint = "https://api.elitedownloader.in";
+    var apiEndPoint = "https://localhost:7156";
     let selectedResolution = '';
     let selectedFormat = '';
     var url = '';
@@ -104,7 +105,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     async function fetchResolution() {
-        debugger;
         document.querySelector('.loader-container').style.display = 'flex';
 
         const url = document.getElementById('videoUrl').value;
@@ -349,41 +349,39 @@ document.addEventListener("DOMContentLoaded", function () {
             });
             return; // Exit the function if resolution is not selected
         }
-
+    
         document.querySelector('.loader-container').style.display = 'flex';
         let url = document.getElementById('videoUrl').value;
         let apiEndpoint;
         let payload;
-
+    
         if (selectedFormat === 'audio-only') {
             apiEndpoint = `${apiEndPoint}/api/VideoProcessing/download-best-audio`;
             payload = { Url: url };
         } else if (selectedFormat === 'video-only') {
             apiEndpoint = `${apiEndPoint}/api/VideoProcessing/download-best-video`;
             payload = { Url: url, Quality: selectedResolution };
-
         } else if (selectedFormat === 'audiovideo') {
             apiEndpoint = `${apiEndPoint}/api/VideoProcessing/download-Video-Audio`;
             payload = { Url: url, Quality: selectedResolution };
         }
-        const startByte = 0; // Start from the first byte
-        const chunkSize = 1048576; // 1 MB chunk size (in bytes)
-        
+    
         try {
+            // Single request to download the entire video file
             const response = await fetch(apiEndpoint, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Range': `bytes=${startByte}-${chunkSize - 1}`
                 },
                 body: JSON.stringify(payload)
             });
-        
+    
             if (response.ok) {
-                // Extract filename from Content-Disposition header
+                // Extract filename from Content-Disposition header (if needed) - or use a default
                 let contentDisposition = response.headers.get('Content-Disposition');
-                let filename = 'default-filename.m4a'; // Default filename in case extraction fails
-        
+                let filename = 'downloaded_video.mp4'; // Default filename
+    
+                // Use your logic for extracting filename from headers if applicable
                 if (contentDisposition) {
                     // Check for UTF-8 filename first
                     let filenameEncodedMatch = contentDisposition.match(/filename\*=(?:UTF-8'')?(.+)/);
@@ -397,20 +395,15 @@ document.addEventListener("DOMContentLoaded", function () {
                         }
                     }
                 }
-        
-                // Create a temporary anchor element, but do not automatically click it
+    
+                // Create a temporary anchor element for the download link
                 let downloadUrl = window.URL.createObjectURL(await response.blob());
                 let downloadLink = document.createElement('a');
-                downloadLink.style.display = 'none'; // Initially hidden
-        
+                downloadLink.style.display = 'none';
                 downloadLink.href = downloadUrl;
-                downloadLink.download = filename; // Use extracted or default filename
-                downloadLink.innerText = 'Click here to download the file'; // Add text to the link
-        
-                // Append the link to the document body or some container element
-                document.body.appendChild(downloadLink);
-        
-                // After successful request, display the download link for manual click
+                downloadLink.download = filename; // Set the suggested filename for the download
+    
+                // Display a modal or alert to inform the user and provide the download link
                 Swal.fire({
                     title: "Download Ready!",
                     html: `<a href="${downloadUrl}" download="${filename}" style="color: #3085d6; text-decoration: underline;">Click here to download your file</a>`,
@@ -418,51 +411,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     confirmButtonColor: "#3085d6",
                     confirmButtonText: "OK"
                 });
-        
-                // Now request the rest of the file from 1 MB onwards
-                const fileSize = response.headers.get('Content-Length');
-                if (fileSize) {
-                    let responseRest = await fetch(apiEndpoint, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Range': `bytes=${chunkSize}-` // Continue downloading from 1 MB onwards
-                        },
-                        body: JSON.stringify(payload)
-                    });
-        
-                    if (responseRest.ok) {
-                        // Handle the rest of the file similarly
-                        let downloadUrlRest = window.URL.createObjectURL(await responseRest.blob());
-                        let aRest = document.createElement('a');
-                        aRest.style.display = 'none';
-                        aRest.href = downloadUrlRest;
-                        aRest.download = filename;
-                        document.body.appendChild(aRest);
-                        window.URL.revokeObjectURL(downloadUrlRest);
-                        // Hide the loader
-                        document.querySelector('.loader-container').style.display = 'none';
-                    }
-                }
-        
-            } else {
-                const result = await response.text();
-                Swal.fire({
-                    title: "Download Failed",
-                    text: `Error: ${result.message}`,
-                    icon: "error",
-                    confirmButtonColor: "#3085d6",
-                    confirmButtonText: "OK"
-                });
+    
+                // Hide the loader
                 document.querySelector('.loader-container').style.display = 'none';
+            } else {
+                throw new Error("Download failed.");
             }
-        
-            // Call the reset function here
-            resetButtons();
         } catch (error) {
             console.error('Error during download:', error);
-            document.querySelector('.loader-container').style.display = 'none';
-        
             Swal.fire({
                 title: "Download Failed",
                 text: "An error occurred while processing your download request.",
@@ -470,12 +426,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 confirmButtonColor: "#3085d6",
                 confirmButtonText: "OK"
             });
+        } finally {
             document.querySelector('.loader-container').style.display = 'none';
-
         }
-        
+    
+        // Call the reset function here
+        resetButtons();
     }
-
+    
+    
+    
     //for nav icons toogle 
 
     const contactLink = document.getElementById('contact-link');
