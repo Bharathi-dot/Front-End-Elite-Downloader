@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         // Check if the URL is entered and the dropdown option is selected
-        if (url === '' || !(url.includes("https://youtube.com/shorts") || url.includes('https://youtu.be'))) {
+        if (url === '' || !(url.includes("https://youtube.com/shorts") || url.includes('https://youtu.be') || url.includes("https://m.youtube.com"))) {
             // If URL is empty or URL does not contain the required domains
             notyf.error({
                 message: 'Enter a Valid URL',
